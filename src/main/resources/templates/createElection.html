@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Create Election</title>
+  <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+        h2 {
+            color: #333;
+        }
+        form {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        label {
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        input[type="text"],
+        input[type="date"],
+        button {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+        button[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            cursor: pointer;
+        }
+        button[type="submit"]:hover {
+            background-color: #45a049;
+        }
+        button[type="button"] {
+            background-color: #008CBA;
+            color: white;
+            cursor: pointer;
+        }
+        button[type="button"]:hover {
+            background-color: #0073aa;
+        }
+    </style>
+</head>
+<body>
+<h2>Create Election</h2>
+<form method="post" action="/saveElection">
+  <label for="name">Election Name:</label>
+  <input type="text" id="name" name="name" required><br>
+
+  <label for="startDate">Start Date:</label>
+  <input type="date" id="startDate" name="startDate" required><br>
+
+  <label for="endDate">End Date:</label>
+  <input type="date" id="endDate" name="endDate" required><br>
+
+  <h3>Candidates:</h3>
+  <div id="candidates">
+    <div>
+      <label>Candidate 1</label><br>
+      <input type="text" name="candidate1" placeholder="Candidate Name" required><br>
+    </div>
+  </div>
+
+  <button type="button" onclick="addCandidate()">Add Candidate</button><br>
+
+  <button type="submit">Create Election</button>
+</form>
+
+<script>
+        function addCandidate() {
+            var candidateCount = document.querySelectorAll("[name^='candidate']").length + 1;
+            var newCandidateHtml = `
+                <div>
+                    <label>Candidate ${candidateCount}</label><br>
+                    <input type="text" name="candidate${candidateCount}" placeholder="Candidate Name" required><br>
+                </div>`;
+            document.getElementById('candidates').insertAdjacentHTML('beforeend', newCandidateHtml);
+        }
+    </script>
+</body>
+</html>
