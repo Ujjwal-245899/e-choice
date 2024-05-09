@@ -57,12 +57,17 @@ public class EmailServiceImpl  implements EmailService{
         String enroll="";
         String state=user.getState();
         String email=user.getEmail();
+        //Genearting the Random Number
         String rndm=generateOtp();
+        //Genrating the Enroll ment Number by concatination of random and Stae name
         enroll=state.substring(0,3).concat(rndm).toUpperCase();
+        //Genarating New Enrolled User
         EnrolledUser enrolledUser = new EnrolledUser();
+        //Saving the Enroll ment Number
         enrolledUser.setErollmentNumber(enroll);
         enrolledUser.setName(user.getName());
         enrolledUserRepository.save(enrolledUser);
+
         System.out.println("--Enrollment saved to the database");
 
             // Try block to check for exceptions

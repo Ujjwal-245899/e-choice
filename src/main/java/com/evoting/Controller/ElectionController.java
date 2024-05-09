@@ -5,6 +5,7 @@ import com.evoting.DAO.ElectionRepository;
 import com.evoting.DTO.ElectionRequest;
 import com.evoting.Model.Candidate;
 import com.evoting.Model.Election;
+import com.evoting.Service.ElectionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -23,19 +24,18 @@ import java.util.stream.Collectors;
 
 @Controller
 public class ElectionController {
-    @Autowired
-    private ElectionRepository electionRepository;
 
     @Autowired
-    private CandidateRepository candidateRepository;
+    private ElectionService electionService;
+
 
     @GetMapping("/adminpage")
-    public ModelAndView showCreateElectionPage()
+    public ModelAndView showAdminPage()
     {
         return new ModelAndView("adminPage");
     }
     @GetMapping("/createElection")
-    public String showcreateElection(){
+    public String showCreateElection(){
         return "createElection";
     }
 
@@ -43,48 +43,25 @@ public class ElectionController {
 
     @PostMapping("/saveElection" )
     @ResponseBody
-    public ModelAndView createElection(@RequestParam String name,
-                                       @RequestParam String startDate,
-                                       @RequestParam String endDate,
-                                       @RequestParam Map<String, String> params) {
+    public String SaveElection(@RequestParam String name,
+                               @RequestParam String startDate,
+                               @RequestParam String endDate,
+                               @RequestParam Map<String, String> params) {
+
+      boolean flag=  electionService.saveElection(name, startDate, endDate, params);
+
+      if(flag==true)
+      {
+          return "sucess";
+      }
 
 
-        List<Candidate> candidates = new ArrayList<>();
 
-// Create a new Election object
-        Election election = new Election();
-        election.setName(name);
-        election.setStartDate(startDate);
-        election.setEndDate(endDate);
-
-// Iterate over the request parameters to extract candidate names
-        for (Map.Entry<String, String> entry : params.entrySet()) {
-            String paramName = entry.getKey();
-            String paramValue = entry.getValue();
-
-            // Check if the parameter key starts with "candidate"
-            if (paramName.startsWith("candidate")) {
-                // Create a new Candidate object and set its name
-                Candidate candidate = new Candidate();
-                candidate.setName(paramValue);
-
-                // Associate the Candidate with the Election
-                candidate.setElection(election);
-
-                // Add the candidate to the list
-                candidates.add(candidate);
-            }
-        }
-
-// Set the list of candidates to the election object
-       election.setCandidates(candidates);
-
-        electionRepository.save(election);
 
 
 
         // Return a response
-        return new ModelAndView("sucess");
+        return "";
     }
     }
 
