@@ -28,15 +28,11 @@ public class ManageUsersController {
 
        model.addAttribute("users",users);
 //        // Add the users object to the model
-//      for (User user :users)
-//      {
-//          System.out.println(user.getName()+"->"+user.getEmail());
-//      }
 
         // Return the Thymeleaf template name
-        return "testManageUsers";
+        return "manageUsers";
     }
-    @GetMapping("/testingButtons")
+    @GetMapping("/approval")
     public String showSucess(@RequestParam("approved") String checked , @RequestParam("userId") String userid)
     {
         Long userId = Long.valueOf(userid);

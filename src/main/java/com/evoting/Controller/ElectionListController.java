@@ -2,8 +2,13 @@ package com.evoting.Controller;
 
 import com.evoting.DAO.CandidateRepository;
 import com.evoting.DAO.ElectionRepository;
+import com.evoting.DAO.EnrolledUserRepository;
+import com.evoting.DAO.VotePermissionRepsitory;
 import com.evoting.Model.Candidate;
 import com.evoting.Model.Election;
+import com.evoting.Model.EnrolledUser;
+import com.evoting.Model.VotePermission;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -20,9 +25,17 @@ public class ElectionListController {
     private ElectionRepository electionRepository;
     @Autowired
     private CandidateRepository candidateRepository;
+    @Autowired
+    private EnrolledUserRepository enrolledUserRepository;
+    @Autowired
+    private VotePermissionRepsitory votePermissionRepsitory;
+
+    @Autowired
+    HttpSession session;
 
     @GetMapping("/page")
     public ModelAndView getVotingPage() {
+
         List<Election> elections = electionRepository.findAll();
         ModelAndView modelAndView = new ModelAndView("electionList");
         modelAndView.addObject("elections", elections);
@@ -30,14 +43,38 @@ public class ElectionListController {
         return modelAndView;
 
     }
-    @PostMapping("/saveEelction")
+    @PostMapping("/votingPage")
     public String SaveElection(@RequestParam("selectedElectionId") Election election , Model model)
     {
+        //Here I will add the validation if the user Enrollment User is Already has Voted for the Election
+        //id --> enrolled User
+       String enrollmentno =(String) session.getAttribute("enrollment");
         Long id = election.getId();
-        System.out.println(election.getId()+"-->" +"Election Id");
-        List<Candidate> candidates = candidateRepository.findByElectionId(id);
-        model.addAttribute("candidates", candidates);
-        return "candidatePage";
+        String electionId= id.toString();
+
+
+    boolean flag = votePermissionRepsitory.existsByEnrollNumberAndElectionId(enrollmentno,electionId);
+
+        System.out.println(flag+"--> "+electionId+"--> "+ enrollmentno);
+
+        if(flag==false) {
+
+            VotePermission votePermission = new VotePermission();
+            votePermission.setElectionId(electionId);
+            votePermission.setEnrollNumber(enrollmentno);
+            votePermissionRepsitory.save(votePermission);
+
+            System.out.println(election.getId() + "-->" + "Election Id"+enrollmentno);
+            List<Candidate> candidates = candidateRepository.findByElectionId(id);
+            model.addAttribute("candidates", candidates);
+            return "candidatePage";
+        }
+        else
+        {
+
+            return "alreadyVoted";
+        }
+
 
     }
 }

@@ -2,8 +2,10 @@ package com.evoting.Controller;
 
 import com.evoting.DAO.EnrolledUserRepository;
 import com.evoting.Model.EnrolledUser;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -18,26 +20,32 @@ public class UserLoginController {
     @Autowired
     private EnrolledUserRepository enrolledUserRepository;
 
-    @GetMapping("/electionList")
-    public String showelectionList()
-    {
-        return "electionList";
+    @Autowired
+    HttpSession session;
+
+   @GetMapping("/userLogin")
+    public String  showUserLogin()
+   {
+       return "loginUser";
+
     }
+    @PostMapping("/login")
+    public String verifyUser(@RequestParam("enrollment") String enrollment)
+    {
+        EnrolledUser user = enrolledUserRepository.findByenrollmentNumber(enrollment);
 
-    @PostMapping("/checkUserLogin")
-    public String checkUserLogin(@RequestParam("enrollmentId") String enrollmentId) {
+    session.setAttribute("enrollment",enrollment);
 
-        boolean f=false;
+        System.out.println(" "+user.getEnrollmentNumber());
 
-            EnrolledUser user = enrolledUserRepository.findByenrollmentNumber(enrollmentId);
-            if(user!=null)
-            {
-                return "redirect:/page";
-            }
-            else
-            {
-                return "";
-            }
 
+        if (user!=null)
+        {
+            return "redirect:/page";
+        }
+        else
+        {
+            return "error";
+        }
     }
 }
