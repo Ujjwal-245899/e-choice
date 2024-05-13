@@ -5,12 +5,9 @@ import com.evoting.Model.EnrolledUser;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
 
@@ -23,29 +20,41 @@ public class UserLoginController {
     @Autowired
     HttpSession session;
 
-   @GetMapping("/userLogin")
-    public String  showUserLogin()
-   {
-       return "loginUser";
-
-    }
-    @PostMapping("/login")
-    public String verifyUser(@RequestParam("enrollment") String enrollment)
+    @GetMapping("/login")
+    public String showLogin()
     {
-        EnrolledUser user = enrolledUserRepository.findByenrollmentNumber(enrollment);
+        return "loginUser";
+    }
 
-    session.setAttribute("enrollment",enrollment);
+    @PostMapping("/verifyLogin")
+    public String verifyloginUser(@RequestParam("enrollNumber") String enrollment)
+    {
+      List<EnrolledUser> users = enrolledUserRepository.findAll();
+      session.setAttribute("enrollment", enrollment);
+      EnrolledUser user=null;
 
-        System.out.println(" "+user.getEnrollmentNumber());
+        for (EnrolledUser i:
+             users) {
+
+            if(i.getEnrollmentNumber().trim().equals(enrollment.trim()))
+            {
+                user=i;
+                break;
+            }
 
 
-        if (user!=null)
+        }
+
+        if(user!=null)
         {
             return "redirect:/page";
         }
         else
         {
-            return "error";
+            return  "sucess";
         }
+
+
+
     }
 }

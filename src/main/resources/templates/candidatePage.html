@@ -56,12 +56,12 @@
           <button type="submit"
                   class="btn-vote"
                   th:text="Vote"
-                  th:attr="disabled=${candidate.voted}">
+                >
             Vote
           </button>
         </form>
         <!-- Show disabled message if candidate has already been voted for -->
-        <span th:if="${candidate.voted}">Voted</span>
+       <!-- <span th:if="${candidate.voted}">Voted</span>-->
       </td>
     </tr>
     </tbody>
