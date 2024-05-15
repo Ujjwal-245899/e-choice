@@ -38,9 +38,9 @@ public class RegisterController {
 		map.put("otp",otp);
 
 		map.put("UserDTO",user);
-		System.out.println("sent the otp to the client");
+		System.out.println("sending the otp to the client");
 		emailService.sendSimpleMail(user.getEmail(),otp);
-		System.out.println("otp sent ");
+		System.out.println("otp sent sucessfully-->"+otp);
 		return "redirect:/otpForm"; // Redirect to the OTP form
 	}
 
