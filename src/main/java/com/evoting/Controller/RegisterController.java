@@ -14,7 +14,7 @@ import java.util.HashMap;
 import java.util.Random;
 
 @Controller // Use @Controller instead of @RestController
-public class Register {
+public class RegisterController {
 	@Autowired
 	private RegistrationService registrationService;
 	@Autowired

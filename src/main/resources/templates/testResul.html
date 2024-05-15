@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Voting Results</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+        body {
+            background-color: #2c3e50;
+            color: #ecf0f1;
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+        }
+        h1 {
+            margin-bottom: 20px;
+        }
+        .chart-container {
+            width: 400px;
+            margin: 20px;
+        }
+
+}
+
+    </style>
+</head>
+<body>
+<h1>Voting Results</h1>
+<div style="display: flex; justify-content: space-around; width: 100%;">
+  <div class="chart-container">
+    <canvas id="pieChart"></canvas>
+  </div>
+  <div class="chart-container">
+    <canvas id="barChart"></canvas>
+  </div>
+  <div class="chart-container">
+    <canvas id="probabilityChart"></canvas>
+  </div>
+
+  <div id="probableWinner"></div>
+
+</div>
+
+<script>
+
+fetch('/api/results')
+    .then(response => response.json())
+    .then(data => {
+        // Calculate total votes
+        const totalVotes = data.reduce((acc, candidate) => acc + candidate.votes, 0);
+
+        // Find candidate(s) with the highest number of votes
+        const maxVotes = Math.max(...data.map(candidate => candidate.votes));
+        const probableWinners = data.filter(candidate => candidate.votes === maxVotes);
+
+        // Display probable winner details
+        let probableWinnerHtml = '';
+        if (probableWinners.length === 1) {
+            probableWinnerHtml = `Probable Winner: ${probableWinners[0].name} with ${probableWinners[0].votes} votes (${((probableWinners[0].votes / totalVotes) * 100).toFixed(2)}% of total votes)`;
+        } else {
+            probableWinnerHtml = "There is a tie between multiple candidates:<br>";
+            probableWinners.forEach(candidate => {
+                probableWinnerHtml += `${candidate.name} - ${candidate.votes} votes (${((candidate.votes / totalVotes) * 100).toFixed(2)}% of total votes)<br>`;
+            });
+        }
+        document.getElementById('probableWinner').innerHTML = probableWinnerHtml;
+
+        // Create the pie chart
+        const pieCtx = document.getElementById('pieChart').getContext('2d');
+        new Chart(pieCtx, {
+            type: 'pie',
+            data: {
+                labels: data.map(candidate => candidate.name),
+                datasets: [{
+                    data: data.map(candidate => candidate.votes),
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.6)',
+                        'rgba(54, 162, 235, 0.6)',
+                        'rgba(255, 206, 86, 0.6)',
+                        'rgba(75, 192, 192, 0.6)',
+                        'rgba(153, 102, 255, 0.6)',
+                        'rgba(255, 159, 64, 0.6)'
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(255, 159, 64, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        position: 'top',
+                        labels: {
+                            color: '#ecf0f1'
+                        }
+                    },
+                    title: {
+                        display: true,
+                        text: 'Votes Distribution',
+                        color: '#ecf0f1'
+                    }
+                }
+            }
+        });
+
+        // Create the bar chart
+        const barCtx = document.getElementById('barChart').getContext('2d');
+        new Chart(barCtx, {
+            type: 'bar',
+            data: {
+                labels: data.map(candidate => candidate.name),
+                datasets: [{
+                    label: 'Votes',
+                    data: data.map(candidate => candidate.votes),
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.6)',
+                        'rgba(54, 162, 235, 0.6)',
+                        'rgba(255, 206, 86, 0.6)',
+                        'rgba(75, 192, 192, 0.6)',
+                        'rgba(153, 102, 255, 0.6)',
+                        'rgba(255, 159, 64, 0.6)'
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(255, 159, 64, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        display: false
+                    },
+                    title: {
+                        display: true,
+                        text: 'Votes per Candidate',
+                        color: '#ecf0f1'
+                    }
+                },
+                scales: {
+                    x: {
+                        ticks: {
+                            color: '#ecf0f1'
+                        }
+                    },
+                    y: {
+                        beginAtZero: true,
+                        ticks: {
+                            color: '#ecf0f1'
+                        }
+                    }
+                }
+            }
+        });
+
+        // Create the probability chart
+        const probabilityCtx = document.getElementById('probabilityChart').getContext('2d');
+        new Chart(probabilityCtx, {
+            type: 'bar',
+            data: {
+                labels: data.map(candidate => candidate.name),
+                datasets: [{
+                    label: 'Probability of Winning (%)',
+                    data: data.map(candidate => (candidate.votes / totalVotes) * 100),
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.6)',
+                        'rgba(54, 162, 235, 0.6)',
+                        'rgba(255, 206, 86, 0.6)',
+                        'rgba(75, 192, 192, 0.6)',
+                        'rgba(153, 102, 255, 0.6)',
+                        'rgba(255, 159, 64, 0.6)'
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(255, 159, 64, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        display: false
+                    },
+                    title: {
+                        display: true,
+                        text: 'Probability of Winning',
+                        color: '#ecf0f1'
+                    }
+                },
+                scales: {
+                    x: {
+                        ticks: {
+                            color: '#ecf0f1'
+                        }
+                    },
+                    y: {
+                        beginAtZero: true,
+                        ticks: {
+                            color: '#ecf0f1'
+                        }
+                    }
+                }
+            }
+        });
+    })
+    .catch(error => console.error('Error fetching voting results:', error));
+
+</script>
+</body>
+</html>

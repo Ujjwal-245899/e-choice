@@ -47,11 +47,11 @@ public class UserLoginController {
 
         if(user!=null)
         {
-            return "redirect:/page";
+            return "redirect:/echoice/electionlist";
         }
         else
         {
-            return  "sucess";
+            return  "error";
         }
 
 

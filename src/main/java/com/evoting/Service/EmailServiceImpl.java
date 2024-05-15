@@ -22,6 +22,9 @@ public class EmailServiceImpl  implements EmailService{
     @Autowired
     private EnrolledUserRepository enrolledUserRepository;
 
+    @Autowired
+    EnrolledUserImpl enrolledUser;
+
  // TO Send A simple Email
     @Override
     public String sendSimpleMail(String to, String otp)
@@ -62,11 +65,8 @@ public class EmailServiceImpl  implements EmailService{
         //Genrating the Enroll ment Number by concatination of random and Stae name
         enroll=state.substring(0,3).concat(rndm).toUpperCase();
         //Genarating New Enrolled User
-        EnrolledUser enrolledUser = new EnrolledUser();
-        //Saving the Enroll ment Number
-        enrolledUser.setErollmentNumber(enroll);
-        enrolledUser.setName(user.getName());
-        enrolledUserRepository.save(enrolledUser);
+
+       enrolledUser.saveEnrollment(user,enroll);
 
         System.out.println("--Enrollment saved to the database");
 

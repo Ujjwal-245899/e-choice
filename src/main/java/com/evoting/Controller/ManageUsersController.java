@@ -1,8 +1,11 @@
 package com.evoting.Controller;
 
+import com.evoting.DAO.EnrolledUserRepository;
 import com.evoting.DAO.UserRepositry;
+import com.evoting.Model.EnrolledUser;
 import com.evoting.Model.User;
 import com.evoting.Service.EmailService;
+import com.evoting.Service.EnrolleddUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,6 +23,11 @@ public class ManageUsersController {
     private UserRepositry userRepository;
     @Autowired
     private EmailService emailService;
+
+    @Autowired
+    private EnrolledUserRepository enrolledUserRepository;
+    @Autowired
+    private EnrolleddUser enrolleddUser;
 
     @GetMapping("/manageusers")
     public String manageUsers(Model model) {
@@ -51,6 +59,9 @@ public class ManageUsersController {
         else
         {
             user= userRepository.findByid(userId);
+
+            enrolleddUser.deleteEnrollment(user);
+
             System.out.println(user.getState()+"-->"+user.getName());
             user.setStatus("false");
             userRepository.save(user);

@@ -33,7 +33,7 @@ public class ElectionListController {
     @Autowired
     HttpSession session;
 
-    @GetMapping("/page")
+    @GetMapping("/echoice/electionlist")
     public ModelAndView getVotingPage() {
 
         List<Election> elections = electionRepository.findAll();
@@ -43,7 +43,7 @@ public class ElectionListController {
         return modelAndView;
 
     }
-    @PostMapping("/votingPage")
+    @PostMapping("/echoice/votingPage")
     public String SaveElection(@RequestParam("selectedElectionId") Election election , Model model)
     {
         //Here I will add the validation if the user Enrollment User is Already has Voted for the Election

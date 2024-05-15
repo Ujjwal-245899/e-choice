@@ -9,10 +9,11 @@ import jakarta.persistence.Id;
 public class EnrolledUser {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
     private String enrollmentNumber;
+    private Long userId;
     public Long getId() {
         return id;
     }
@@ -38,4 +39,11 @@ public class EnrolledUser {
     }
 
 
+    public Long getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Long userId) {
+        this.userId = userId;
+    }
 }
