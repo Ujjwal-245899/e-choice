@@ -25,6 +25,7 @@
         }
         input[type="text"],
         input[type="date"],
+        input[type="file"],
         button {
             width: 100%;
             padding: 10px;
@@ -53,7 +54,7 @@
 </head>
 <body>
 <h2>Create Election</h2>
-<form method="post" action="/saveElection">
+<form method="post" action="/saveElection" enctype="multipart/form-data">
   <label for="name">Election Name:</label>
   <input type="text" id="name" name="name" required><br>
 
@@ -68,6 +69,7 @@
     <div>
       <label>Candidate 1</label><br>
       <input type="text" name="candidate1" placeholder="Candidate Name" required><br>
+      <input type="file" name="candidate1Image" accept="image/*" required><br>
     </div>
   </div>
 
@@ -78,11 +80,12 @@
 
 <script>
         function addCandidate() {
-            var candidateCount = document.querySelectorAll("[name^='candidate']").length + 1;
+            var candidateCount = document.querySelectorAll("[name^='candidate']").length / 2 + 1;
             var newCandidateHtml = `
                 <div>
                     <label>Candidate ${candidateCount}</label><br>
                     <input type="text" name="candidate${candidateCount}" placeholder="Candidate Name" required><br>
+                    <input type="file" name="candidate${candidateCount}Image" accept="image/*" required><br>
                 </div>`;
             document.getElementById('candidates').insertAdjacentHTML('beforeend', newCandidateHtml);
         }

@@ -28,10 +28,10 @@ public class RegisterController {
 	@GetMapping("/register")
 	public String showRegister(Model model) {
 		model.addAttribute("user", new UserDTO());
-		return "registration"; // Return the name of the registration view
+		return "regsiter"; // Return the name of the registration view
 	}
 
-	@PostMapping("/saveUser")
+	@PostMapping("/saveuser")
 	public String saveUser(@ModelAttribute("user") UserDTO user, Model model) {
 		String otp = generateOtp();
 

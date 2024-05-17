@@ -6,9 +6,14 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class FakeController {
 
-    @GetMapping("/test")
+    @GetMapping("/index")
     public String showTestPage()
     {
-        return "testResul";
+        return "index";
+    }
+    @GetMapping("/test")
+    public  String testPage()
+    {
+        return "test";
     }
 }
