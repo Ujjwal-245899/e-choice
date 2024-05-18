@@ -52,9 +52,10 @@
         }
     </style>
 </head>
+
 <body>
 <h2>Create Election</h2>
-<form method="post" action="/saveElection" enctype="multipart/form-data">
+<form id="electionForm" method="post" action="/saveElection" enctype="multipart/form-data" onsubmit="return validateForm()">
   <label for="name">Election Name:</label>
   <input type="text" id="name" name="name" required><br>
 
@@ -68,8 +69,8 @@
   <div id="candidates">
     <div>
       <label>Candidate 1</label><br>
-      <input type="text" name="candidate1" placeholder="Candidate Name" required><br>
-      <input type="file" name="candidate1Image" accept="image/*" required><br>
+      <input type="text" name="candidateNames" placeholder="Candidate Name" required><br>
+      <input type="file" name="candidateImages" accept="image/*" required><br>
     </div>
   </div>
 
@@ -79,16 +80,31 @@
 </form>
 
 <script>
-        function addCandidate() {
-            var candidateCount = document.querySelectorAll("[name^='candidate']").length / 2 + 1;
-            var newCandidateHtml = `
-                <div>
-                    <label>Candidate ${candidateCount}</label><br>
-                    <input type="text" name="candidate${candidateCount}" placeholder="Candidate Name" required><br>
-                    <input type="file" name="candidate${candidateCount}Image" accept="image/*" required><br>
-                </div>`;
-            document.getElementById('candidates').insertAdjacentHTML('beforeend', newCandidateHtml);
+    function addCandidate() {
+        var candidateCount = document.querySelectorAll("[name='candidateNames']").length + 1;
+        var newCandidateHtml = `
+            <div>
+                <label>Candidate ${candidateCount}</label><br>
+                <input type="text" name="candidateNames" placeholder="Candidate Name" required><br>
+                <input type="file" name="candidateImages" accept="image/*" required><br>
+            </div>`;
+        document.getElementById('candidates').insertAdjacentHTML('beforeend', newCandidateHtml);
+    }
+
+    function validateForm() {
+        const fileInputs = document.querySelectorAll("input[type='file']");
+        for (let i = 0; i < fileInputs.length; i++) {
+            const file = fileInputs[i].files[0];
+            if (file) {
+                if (file.size > 3 * 1024 * 1024) { // 3 MB in bytes
+                    alert('File size must be less than 3 MB');
+                    return false;
+                }
+            }
         }
-    </script>
+        return true;
+    }
+</script>
 </body>
 </html>
+

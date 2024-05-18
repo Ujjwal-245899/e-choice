@@ -21,6 +21,12 @@ public class Candidate {
     private int voteCount;
     private boolean voted;
 
+    @Lob
+    @Column(columnDefinition = "LONGBLOB")
+    private byte[] image;
+
+    // Getters and setters
+
     public Long getId() {
         return id;
     }
@@ -45,7 +51,13 @@ public class Candidate {
         this.election = election;
     }
 
+    public int getVoteCount() {
+        return voteCount;
+    }
 
+    public void setVoteCount(int voteCount) {
+        this.voteCount = voteCount;
+    }
 
     public boolean isVoted() {
         return voted;
@@ -55,18 +67,12 @@ public class Candidate {
         this.voted = voted;
     }
 
-
-
-    public int getVoteCount() {
-        return voteCount;
+    public byte[] getImage() {
+        return image;
     }
 
-    public void setVoteCount(int voteCount) {
-        this.voteCount = voteCount;
+    public void setImage(byte[] image) {
+        this.image = image;
     }
 
-
-
-    // Constructors, getters, and setters
-    // You can generate these using Lombok or write them manually
 }

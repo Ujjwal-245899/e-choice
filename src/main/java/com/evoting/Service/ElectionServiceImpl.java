@@ -7,7 +7,9 @@ import com.evoting.Model.Election;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -20,42 +22,40 @@ public class ElectionServiceImpl implements ElectionService{
     @Autowired
     private CandidateRepository candidateRepository;
 
+
     @Override
-    public boolean saveElection(String name , String startDate, String endDate, Map<String, String> params) {
+    public boolean saveElection(String name, String startDate, String endDate, List<String> candidateNames, List<MultipartFile> candidateImages) throws IOException{
+        // Create a new Election object
+        final long MAX_FILE_SIZE = 3 * 1024 * 1024; // 3 MB in bytes
 
+        // Validate file sizes
+        for (MultipartFile candidateImage : candidateImages) {
+            if (candidateImage.getSize() > MAX_FILE_SIZE) {
+                throw new IOException("File size must be less than 3 MB");
+            }
+        }
 
-        List<Candidate> candidates = new ArrayList<>();
-
-// Create a new Election object
         Election election = new Election();
         election.setName(name);
         election.setStartDate(startDate);
         election.setEndDate(endDate);
 
-// Iterate over the request parameters to extract candidate names
-        for (Map.Entry<String, String> entry : params.entrySet()) {
-            String paramName = entry.getKey();
-            String paramValue = entry.getValue();
+        List<Candidate> candidates = new ArrayList<>();
 
-            // Check if the parameter key starts with "candidate"
-            if (paramName.startsWith("candidate")) {
-                // Create a new Candidate object and set its name
-                Candidate candidate = new Candidate();
-                candidate.setName(paramValue);
+        for (int i = 0; i < candidateNames.size(); i++) {
+            String candidateName = candidateNames.get(i);
+            MultipartFile candidateImage = candidateImages.get(i);
 
-                // Associate the Candidate with the Election
-                candidate.setElection(election);
+            Candidate candidate = new Candidate();
+            candidate.setName(candidateName);
+            candidate.setImage(candidateImage.getBytes());
+            candidate.setElection(election);
 
-                // Add the candidate to the list
-                candidates.add(candidate);
-            }
+            candidates.add(candidate);
         }
 
-// Set the list of candidates to the election object
         election.setCandidates(candidates);
-
         electionRepository.save(election);
-
 
         return true;
     }
