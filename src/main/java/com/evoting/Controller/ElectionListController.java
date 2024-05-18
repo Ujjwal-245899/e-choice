@@ -10,6 +10,9 @@ import com.evoting.Model.EnrolledUser;
 import com.evoting.Model.VotePermission;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -44,36 +47,43 @@ public class ElectionListController {
 
     }
     @PostMapping("/echoice/votingPage")
-    public String SaveElection(@RequestParam("selectedElectionId") Election election , Model model)
-    {
+    public String SaveElection(@RequestParam("selectedElectionId") Election election , Model model) {
         //Here I will add the validation if the user Enrollment User is Already has Voted for the Election
         //id --> enrolled User
-       String enrollmentno =(String) session.getAttribute("enrollment");
+        String enrollmentno = (String) session.getAttribute("enrollment");
         Long id = election.getId();
-        String electionId= id.toString();
+        String electionId = id.toString();
 
 
-    boolean flag = votePermissionRepsitory.existsByEnrollNumberAndElectionId(enrollmentno,electionId);
+        boolean flag = votePermissionRepsitory.existsByEnrollNumberAndElectionId(enrollmentno, electionId);
 
-        System.out.println(flag+"--> "+electionId+"--> "+ enrollmentno);
+        System.out.println(flag + "--> " + electionId + "--> " + enrollmentno);
 
-        if(flag==false) {
+        if (flag == false) {
 
             VotePermission votePermission = new VotePermission();
             votePermission.setElectionId(electionId);
             votePermission.setEnrollNumber(enrollmentno);
             votePermissionRepsitory.save(votePermission);
 
-            System.out.println(election.getId() + "-->" + "Election Id"+enrollmentno);
+            System.out.println(election.getId() + "-->" + "Election Id" + enrollmentno);
             List<Candidate> candidates = candidateRepository.findByElectionId(id);
             model.addAttribute("candidates", candidates);
             return "candidatePage";
-        }
-        else
-        {
+        } else {
 
             return "alreadyVoted";
         }
+    }
+        @GetMapping("/candidateImage/{id}")
+        public ResponseEntity<byte[]> getCandidateImage(@PathVariable Long id) {
+        Candidate candidate = candidateRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Invalid candidate ID"));
+        byte[] image = candidate.getImage();
+
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.IMAGE_JPEG); // Assuming the image is in JPEG format
+        return new ResponseEntity<>(image, headers, HttpStatus.OK);
 
 
     }

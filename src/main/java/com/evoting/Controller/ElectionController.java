@@ -12,8 +12,10 @@ import org.springframework.http.ResponseEntity;
 //import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -46,9 +48,12 @@ public class ElectionController {
     public String SaveElection(@RequestParam String name,
                                @RequestParam String startDate,
                                @RequestParam String endDate,
-                               @RequestParam Map<String, String> params) {
+                               @RequestParam List<String> candidateNames,
+                               @RequestParam("candidateImages") List<MultipartFile> candidateImages) throws IOException {
 
-      boolean flag=  electionService.saveElection(name, startDate, endDate, params);
+      //boolean flag=  electionService.saveElection(name, startDate, endDate, params);
+
+      boolean flag = electionService.saveElection(name, startDate, endDate,candidateNames,candidateImages);
 
       if(flag==true)
       {

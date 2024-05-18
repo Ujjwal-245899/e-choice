@@ -41,7 +41,7 @@
     <tr>
       <th class="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">ID</th>
       <th class="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Name</th>
-      <!-- Add more columns as needed -->
+      <th class="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Image</th>
       <th class="px-6 py-3 bg-gray-50"></th>
     </tr>
     </thead>
@@ -49,23 +49,18 @@
     <tr th:each="candidate : ${candidates}" class="hover:bg-gray-50 transition duration-300">
       <td class="px-6 py-4 whitespace-nowrap"><span th:text="${candidate.id}"></span></td>
       <td class="px-6 py-4 whitespace-nowrap"><span th:text="${candidate.name}"></span></td>
-      <!-- Add more columns as needed -->
+      <td class="px-6 py-4 whitespace-nowrap">
+        <img th:src="@{'/candidateImage/' + ${candidate.id}}" alt="Candidate Image" class="h-16 w-16 object-cover">
+      </td>
       <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-        <!-- Form to handle voting -->
         <form th:action="@{'/candidates/vote/' + ${candidate.id}}" method="post">
-          <button type="submit"
-                  class="btn-vote"
-                  th:text="Vote"
-                >
-            Vote
-          </button>
+          <button type="submit" class="btn-vote" th:text="'Vote'">Vote</button>
         </form>
-        <!-- Show disabled message if candidate has already been voted for -->
-       <!-- <span th:if="${candidate.voted}">Voted</span>-->
       </td>
     </tr>
     </tbody>
   </table>
 </div>
 </body>
+
 </html>
