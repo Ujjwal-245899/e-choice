@@ -1,10 +1,49 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-<h1> error !!</h1>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Error Card</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+        background-color: #f0f0f0;
+      }
+
+      .error-card {
+        background-color: #ffdddd;
+        border-left: 6px solid #f44336;
+        padding: 20px;
+        max-width: 400px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        border-radius: 5px;
+      }
+
+      .error-header {
+        font-size: 18px;
+        font-weight: bold;
+        color: #f44336;
+        margin-bottom: 10px;
+      }
+
+      .error-message {
+        font-size: 16px;
+        color: #333;
+      }
+    </style>
+    <div class="error-card">
+      <div class="error-header">Error found</div>
+      <div class="error-message">
+        Please enter correct email or OTP which where provide by the Admin.
+      </div>
+    </div>
+  </body>
 </html>
