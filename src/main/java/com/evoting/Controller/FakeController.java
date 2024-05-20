@@ -16,4 +16,9 @@ public class FakeController {
     {
         return "test";
     }
+    @GetMapping("/loginpage")
+    public String showloginPage()
+    {
+        return "login";
+    }
 }
