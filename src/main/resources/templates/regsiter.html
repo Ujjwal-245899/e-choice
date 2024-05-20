@@ -1,377 +1,565 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <!-- Basic -->
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <!-- Mobile Metas -->
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <!-- Site Metas -->
+    <meta name="keywords" content="" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
 
-<head>
-  <!-- Basic -->
-  <meta charset="utf-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <!-- Mobile Metas -->
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-  <!-- Site Metas -->
-  <meta name="keywords" content="" />
-  <meta name="description" content="" />
-  <meta name="author" content="" />
+    <title>Spering</title>
 
-  <title>Spering</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <!-- bootstrap core css -->
+    <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.css}" />
 
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-  <!-- bootstrap core css -->
-  <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.css}" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Poppins:400,700&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Custom styles for this template -->
+    <link href="css/style.css" rel="stylesheet" th:href="@{/css/style.css}" />
+    <!-- responsive style -->
+    <link
+      href="css/responsive.css"
+      rel="stylesheet"
+      th:href="@{/css/responsive.css}"
+    />
+    <style>
+      .main-container {
+        height: calc(130vh - 90px);
+        background: linear-gradient(to right, #eaf0f1 55%, #1cbbb4 55%);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 30px 0;
+      }
+      .form-group input,
+      .form-group select {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        font-size: 17px;
+      }
+      .rimg-box {
+        flex: 1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
 
-  <link href="https://fonts.googleapis.com/css?family=Poppins:400,700&display=swap" rel="stylesheet">
-  <!-- Custom styles for this template -->
-  <link href="css/style.css" rel="stylesheet" th:href="@{/css/style.css}" />
-  <!-- responsive style -->
-  <link href="css/responsive.css" rel="stylesheet" th:href="@{/css/responsive.css}" />
-</head>
+      .rimg-box img {
+        max-width: 60%;
+        height: auto;
+        border-radius: 10px;
+      }
 
-<body class="sub_page">
-<div class="hero_area">
-  <!-- header section strats -->
-  <header class="header_section">
-    <div class="container-fluid">
-      <nav class="navbar navbar-expand-lg custom_nav-container">
-        <a class="navbar-brand" href="index.html">
-          <img src="images/logo.png" alt="" />
-          <span>
-              Spering
-            </span>
-        </a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
+      .register_container {
+        flex: 1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 20px;
+      }
 
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav  ">
-            <li class="nav-item ">
-              <a class="nav-link" th:href="@{/index}">Home <span class="sr-only">(current)</span></a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="about.html"> About</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="work.html">Work </a>
-            </li>
-            <li class="nav-item active">
-              <a class="nav-link" href="category.html"> Category </a>
-            </li>
-          </ul>
-          <div class="user_option">
-            <a href="">
-                <span>
-                  Login/Register
-                </span>
+      .registration-form {
+        width: 80%;
+        max-width: 400px;
+        background: rgba(255, 255, 255, 0.9);
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        min-height: 350px;
+      }
+
+      .registration-form h2 {
+        text-align: center;
+        margin-bottom: 20px;
+        font-size: 25px;
+      }
+
+      .form-group {
+        margin-bottom: 20px;
+        font-size: 17px;
+      }
+
+      .form-group label {
+        display: block;
+        margin-bottom: 5px;
+        font-size: 17px;
+      }
+
+      .form-group input,
+      .form-group select {
+        width: 100%;
+        padding: 15px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        font-size: 17px;
+      }
+
+      .btn-box1 {
+        width: 100%;
+        padding: 10px;
+        border: none;
+        border-radius: 5px;
+        background-color: #1cbbb4;
+        color: white;
+        font-size: 21px;
+        cursor: pointer;
+      }
+
+      .btn-box1:hover {
+        background-color: #17a2b8;
+      }
+
+      .mt-3,
+      .mt-2 {
+        margin-top: 10px;
+        text-align: center;
+        font-size: 17px;
+      }
+
+      .mt-3 a,
+      .mt-2 a {
+        color: #1cbbb4;
+        text-decoration: none;
+        font-size: 17px;
+      }
+
+      .mt-3 a:hover,
+      .mt-2 a:hover {
+        text-decoration: underline;
+      }
+    </style>
+  </head>
+
+  <body class="sub_page">
+    <div class="hero_area">
+      <!-- header section strats -->
+      <header class="header_section">
+        <div class="container-fluid">
+          <nav class="navbar navbar-expand-lg custom_nav-container">
+            <a class="navbar-brand" href="index.html">
+              <img src="images/logo.png" alt="" />
+              <span> Spering </span>
             </a>
-            <form class="form-inline my-2 my-lg-0 ml-0 ml-lg-4 mb-3 mb-lg-0">
-              <button class="btn  my-2 my-sm-0 nav_search-btn" type="submit"></button>
-            </form>
-          </div>
-        </div>
-        <div>
-          <div class="custom_menu-btn ">
-            <button>
-              <span class=" s-1"></span>
-              <span class="s-2"></span>
-              <span class="s-3"></span>
+            <button
+              class="navbar-toggler"
+              type="button"
+              data-toggle="collapse"
+              data-target="#navbarSupportedContent"
+              aria-controls="navbarSupportedContent"
+              aria-expanded="false"
+              aria-label="Toggle navigation"
+            >
+              <span class="navbar-toggler-icon"></span>
             </button>
-          </div>
-        </div>
 
-      </nav>
-    </div>
-  </header>
-  <!-- end header section -->
-</div>
-
-<script th:inline="javascript">
-    /*<![CDATA[*/
-    function validateForm(event) {
-      event.preventDefault(); // Prevent form from submitting normally
-
-      // Get form elements
-      const name = document.getElementById('name').value;
-      const email = document.getElementById('email').value;
-      const password = document.getElementById('password').value;
-      const phoneNumber = document.getElementById('phoneNumber').value;
-      const state = document.getElementById('state').value;
-      const city = document.getElementById('city').value;
-      const dob = document.getElementById('DOB').value;
-
-      // Regular expressions for validation
-      const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-      const phonePattern = /^[0-9]{10}$/;
-
-      // Error messages
-      if (name.trim() === '') {
-        alert('Name is required.');
-        return false;
-      }
-
-      if (!emailPattern.test(email)) {
-        alert('Invalid email format.');
-        return false;
-      }
-
-      if (password.trim() === '') {
-        alert('Password is required.');
-        return false;
-      }
-
-      if (!phonePattern.test(phoneNumber)) {
-        alert('Phone number must be 10 digits.');
-        return false;
-      }
-
-      if (state.trim() === '') {
-        alert('State is required.');
-        return false;
-      }
-
-      if (city.trim() === '') {
-        alert('City is required.');
-        return false;
-      }
-
-      if (dob === '') {
-        alert('Date of Birth is required.');
-        return false;
-      }
-
-      // If all validations pass
-      alert('Successfully registered!');
-      document.getElementById('registrationForm').submit(); // Submit the form programmatically
-      return true;
-    }
-    /*]]>*/
-  </script>
-<div class="main-container">
-  <div class="register_container">
-    <div class="registration-form">
-      <h2 class="text-center mb-4">Register</h2>
-      <form action="/saveuser" method="post" >
-        <div class="form-group">
-          <label for="name">Name:</label>
-          <input type="text" class="form-control" id="name" name="name" placeholder="Enter your name" required>
-          <p th:text="${errorname}"></p>
-        </div>
-        <div class="form-group">
-          <label for="email">Email:</label>
-          <input type="email" class="form-control" id="email" name="email" placeholder="Enter your email" required>
-        </div>
-        <div class="form-group">
-          <label for="password">Password:</label>
-          <input type="password" class="form-control" id="password" name="password" placeholder="Enter your password" required>
-        </div>
-        <div class="form-group">
-          <label >Phone Number:</label>
-          <input type="number" class="form-control" id="phoneNumber" name="phoneNumber" placeholder="Enter your phone number" required>
-        </div>
-        <div class="form-group">
-          <label for="state">State:</label>
-          <select id="state" name="state" required>
-            <option value="">Select State</option>
-            <option value="Andhra Pradesh">Andhra Pradesh</option>
-            <option value="Arunachal Pradesh">Arunachal Pradesh</option>
-            <option value="Assam">Assam</option>
-            <option value="Bihar">Bihar</option>
-            <option value="Chhattisgarh">Chhattisgarh</option>
-            <option value="Chandigarh">Chandigarh</option>
-            <option value="Delhi">Delhi</option>
-            <option value="Goa">Goa</option>
-            <option value="Gujarat">Gujarat</option>
-            <option value="Haryana">Haryana</option>
-            <option value="Himachal Pradesh">Himachal Pradesh</option>
-            <option value="Jharkhand">Jharkhand</option>
-            <option value="Karnataka">Karnataka</option>
-            <option value="Kerala">Kerala</option>
-            <option value="Madhya Pradesh">Madhya Pradesh</option>
-            <option value="Maharashtra">Maharashtra</option>
-            <option value="Manipur">Manipur</option>
-            <option value="Meghalaya">Meghalaya</option>
-            <option value="Mizoram">Mizoram</option>
-            <option value="Nagaland">Nagaland</option>
-            <option value="Odisha">Odisha</option>
-            <option value="Punjab">Punjab</option>
-            <option value="Rajasthan">Rajasthan</option>
-            <option value="Sikkim">Sikkim</option>
-            <option value="Tamil Nadu">Tamil Nadu</option>
-            <option value="Telangana">Telangana</option>
-            <option value="Tripura">Tripura</option>
-            <option value="Uttar Pradesh">Uttar Pradesh</option>
-            <option value="Uttarakhand">Uttarakhand</option>
-            <option value="West Bengal">West Bengal</option>
-            <option value="Puducherry">Puducherry</option>
-          </select>
-          <div id="stateError" class="error"></div>
-        </div>
-        <div class="form-group">
-            <label for="city">City:</label>
-            <input type="text" class="form-control" id="city" name="city" placeholder="Enter your city" required>
-          </div>
-          <div class="form-group">
-            <label for="DOB">Date Of Birth:</label>
-            <input type="date" class="form-control" id="dob" name="dob" placeholder="Enter your DOB" required>
-          </div>
-          <button type="submit" class="btn-box1">Register</button>
-        </form>
-      </div>
-    </div>
-    <div class="rimg-box">
-      <img th:src="@{/images/slider-img.png}" alt="">
-    </div>
-  </div>
-  
-<section class="info_section ">
-  <div class="info_container layout_padding-top">
-    <div class="container">
-      <div class="info_top">
-        <div class="info_logo">
-          <img th:src="@{/images/logo.png}" alt="" />
-          <span>
-            Spering
-          </span>
-        </div>
-        <div class="social_box">
-          <a href="#">
-            <img th:src="@{/images/fb.png}" alt="">
-          </a>
-          <a href="#">
-            <img th:src="@{/images/twitter.png}" alt="">
-          </a>
-          <a href="#">
-            <img th:src="@{/images/linkedin.png}" alt="">
-          </a>
-          <a href="#">
-            <img th:src="@{/images/instagram.png}" alt="">
-          </a>
-          <a href="#">
-            <img th:src="@{/images/youtube.png}" alt="">
-          </a>
-        </div>
-      </div>
-
-      <div class="info_main">
-        <div class="row">
-          <div class="col-md-3 col-lg-2">
-            <div class="info_link-box">
-              <h5>
-                Useful Link
-              </h5>
-              <ul>
-                <li class=" active">
-                  <a class="" href="index.html">Home <span class="sr-only">(current)</span></a>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+              <ul class="navbar-nav">
+                <li class="nav-item">
+                  <a class="nav-link" th:href="@{/index}"
+                    >Home <span class="sr-only">(current)</span></a
+                  >
                 </li>
-                <li class="">
-                  <a class="" href="about.html">About </a>
+                <li class="nav-item">
+                  <a class="nav-link" href="about.html"> About</a>
                 </li>
-                <li class="">
-                  <a class="" href="work.html">Work </a>
+                <li class="nav-item">
+                  <a class="nav-link" href="work.html">Work </a>
                 </li>
-                <li class="">
-                  <a class="" href="category.html">Category </a>
+                <li class="nav-item active">
+                  <a class="nav-link" href="category.html"> Category </a>
                 </li>
               </ul>
+              <div class="user_option">
+                <a href="">
+                  <span> Login/Register </span>
+                </a>
+                <form
+                  class="form-inline my-2 my-lg-0 ml-0 ml-lg-4 mb-3 mb-lg-0"
+                >
+                  <button
+                    class="btn my-2 my-sm-0 nav_search-btn"
+                    type="submit"
+                  ></button>
+                </form>
+              </div>
             </div>
-          </div>
-          <div class="col-md-3 ">
-            <h5>
-              Offices
-            </h5>
-            <p>
-              Readable content of a page when looking at its layoutreadable content of a page when looking at its layout
-            </p>
-          </div>
-
-          <div class="col-md-3 col-lg-2 offset-lg-1">
-            <h5>
-              Information
-            </h5>
-            <p>
-              Readable content of a page when looking at its layoutreadable content of a page when looking at its layout
-            </p>
-          </div>
-
-          <div class="col-md-3  offset-lg-1">
-            <div class="info_form ">
-              <h5>
-                Newsletter
-              </h5>
-              <form action="">
-                <input type="email" placeholder="Email">
+            <div>
+              <div class="custom_menu-btn">
                 <button>
-                  Subscribe
+                  <span class="s-1"></span>
+                  <span class="s-2"></span>
+                  <span class="s-3"></span>
                 </button>
-              </form>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-lg-9 col-md-10 mx-auto">
-          <div class="info_contact layout_padding2">
-            <div class="row">
-              <div class="col-md-3">
-                <a href="#" class="link-box">
-                  <div class="img-box">
-                    <img th:src="@{/images/location.png}" alt="">
-                  </div>
-                  <div class="detail-box">
-                    <h6>
-                      Location
-                    </h6>
-                  </div>
-                </a>
-              </div>
-              <div class="col-md-4">
-                <a href="#" class="link-box">
-                  <div class="img-box">
-                    <img th:src="@{/images/mail.png}" alt="">
-                  </div>
-                  <div class="detail-box">
-                    <h6>
-                      demo@gmail.com
-                    </h6>
-                  </div>
-                </a>
-              </div>
-              <div class="col-md-5">
-                <a href="#" class="link-box">
-                  <div class="img-box">
-                    <img th:src="@{/images/call.png}" alt="">
-                  </div>
-                  <div class="detail-box">
-                    <h6>
-                      Call +01 1234567890
-                    </h6>
-                  </div>
-                </a>
               </div>
             </div>
-          </div>
+          </nav>
         </div>
-      </div>
-
+      </header>
+      <!-- end header section -->
     </div>
-  </div>
-</section>
 
-<!-- end info section -->
+    <script th:inline="javascript">
+      /*<![CDATA[*/
+      function validateForm(event) {
+        event.preventDefault(); // Prevent form from submitting normally
 
-<!-- footer section -->
-<footer class="container-fluid footer_section ">
-  <div class="container">
-    <p>
-      &copy; <span id="displayDate"></span> All Rights Reserved By
-      <a href="https://html.design/">Free Html Templates</a>
-    </p>
-  </div>
-</footer>
-<!-- end  footer section -->
+        // Get form elements
+        const name = document.getElementById("name").value;
+        const email = document.getElementById("email").value;
+        const password = document.getElementById("password").value;
+        const phoneNumber = document.getElementById("phoneNumber").value;
+        const state = document.getElementById("state").value;
+        const city = document.getElementById("city").value;
+        const dob = document.getElementById("dob").value;
 
+        // Regular expressions for validation
+        const namePattern = /^[a-zA-Z\s]+$/;
+        const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+        const passwordPattern =
+          /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,15}$/;
+        const phonePattern = /^[0-9]{10}$/;
+        const cityPattern = /^[a-zA-Z\s]+$/;
 
-<script th:src="@{/js/jquery-3.4.1.min.js}"></script>
-<script th:src="@{/js/bootstrap.js}"></script>
-<script th:src="@{/js/custom.js}"></script>
-</body>
+        // Validate name
+        if (!namePattern.test(name)) {
+          alert("Name can only contain letters and spaces.");
+          return false;
+        }
 
+        // Validate email
+        if (!emailPattern.test(email)) {
+          alert("Invalid email format.");
+          return false;
+        }
+
+        // Validate password
+        if (!passwordPattern.test(password)) {
+          alert(
+            "Password must be 8-15 characters long, including uppercase, lowercase, number, and special character."
+          );
+          return false;
+        }
+
+        // Validate phone number
+        if (!phonePattern.test(phoneNumber)) {
+          alert("Phone number must be 10 digits.");
+          return false;
+        }
+
+        // Validate state
+        if (state.trim() === "") {
+          alert("State is required.");
+          return false;
+        }
+
+        // Validate city
+        if (!cityPattern.test(city)) {
+          alert("City can only contain letters and spaces.");
+          return false;
+        }
+
+        // Validate date of birth
+        function calculateAge(dob) {
+          const today = new Date();
+          const birthDate = new Date(dob);
+          let age = today.getFullYear() - birthDate.getFullYear();
+          const m = today.getMonth() - birthDate.getMonth();
+          if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+            age--;
+          }
+          return age;
+        }
+        if (calculateAge(dob) < 18) {
+          alert("You must be at least 18 years old to register.");
+          return false;
+        }
+        // If all validations pass
+        alert("Successfully registered!");
+        document.getElementById("registrationForm").submit(); // Submit the form programmatically
+        return true;
+      }
+      /*]]>*/
+    </script>
+
+    <div class="main-container">
+      <div class="register_container">
+        <div class="registration-form">
+          <h2 class="text-center mb-4">Register</h2>
+          <form
+            id="registrationForm"
+            action="/saveuser"
+            method="post"
+            onsubmit="validateForm(event)"
+          >
+            <div class="form-group">
+              <label for="name">Name:</label>
+              <input
+                type="text"
+                class="form-control"
+                id="name"
+                name="name"
+                placeholder="Enter your name"
+                required
+              />
+              <p th:text="${errorname}"></p>
+            </div>
+            <div class="form-group">
+              <label for="email">Email:</label>
+              <input
+                type="email"
+                class="form-control"
+                id="email"
+                name="email"
+                placeholder="Enter your email"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <label for="password">Password:</label>
+              <input
+                type="password"
+                class="form-control"
+                id="password"
+                name="password"
+                placeholder="Enter your password"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <label>Phone Number:</label>
+              <input
+                type="number"
+                class="form-control"
+                id="phoneNumber"
+                name="phoneNumber"
+                placeholder="Enter your phone number"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <label for="state">State:</label>
+              <select id="state" name="state" required>
+                <option value="">Select State</option>
+                <option value="Andhra Pradesh">Andhra Pradesh</option>
+                <option value="Arunachal Pradesh">Arunachal Pradesh</option>
+                <option value="Assam">Assam</option>
+                <option value="Bihar">Bihar</option>
+                <option value="Chhattisgarh">Chhattisgarh</option>
+                <option value="Chandigarh">Chandigarh</option>
+                <option value="Delhi">Delhi</option>
+                <option value="Goa">Goa</option>
+                <option value="Gujarat">Gujarat</option>
+                <option value="Haryana">Haryana</option>
+                <option value="Himachal Pradesh">Himachal Pradesh</option>
+                <option value="Jharkhand">Jharkhand</option>
+                <option value="Karnataka">Karnataka</option>
+                <option value="Kerala">Kerala</option>
+                <option value="Madhya Pradesh">Madhya Pradesh</option>
+                <option value="Maharashtra">Maharashtra</option>
+                <option value="Manipur">Manipur</option>
+                <option value="Meghalaya">Meghalaya</option>
+                <option value="Mizoram">Mizoram</option>
+                <option value="Nagaland">Nagaland</option>
+                <option value="Odisha">Odisha</option>
+                <option value="Punjab">Punjab</option>
+                <option value="Rajasthan">Rajasthan</option>
+                <option value="Sikkim">Sikkim</option>
+                <option value="Tamil Nadu">Tamil Nadu</option>
+                <option value="Telangana">Telangana</option>
+                <option value="Tripura">Tripura</option>
+                <option value="Uttar Pradesh">Uttar Pradesh</option>
+                <option value="Uttarakhand">Uttarakhand</option>
+                <option value="West Bengal">West Bengal</option>
+                <option value="Puducherry">Puducherry</option>
+              </select>
+              <div id="stateError" class="error"></div>
+            </div>
+            <div class="form-group">
+              <label for="city">City:</label>
+              <input
+                type="text"
+                class="form-control"
+                id="city"
+                name="city"
+                placeholder="Enter your city"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <label for="dob">Date Of Birth:</label>
+              <input
+                type="date"
+                class="form-control"
+                id="dob"
+                name="dob"
+                placeholder="Enter your DOB"
+                required
+              />
+            </div>
+            <button type="submit" class="btn-box1">Register</button>
+          </form>
+          <div class="mt-3">
+            <p>Already have an account? <a href="/login">Login here</a></p>
+          </div>
+        </div>
+      </div>
+      <div class="rimg-box">
+        <img th:src="@{/images/slider-img.png}" alt="" />
+      </div>
+    </div>
+
+    <section class="info_section">
+      <div class="info_container layout_padding-top">
+        <div class="container">
+          <div class="info_top">
+            <div class="info_logo">
+              <img th:src="@{/images/logo.png}" alt="" />
+              <span> Spering </span>
+            </div>
+            <div class="social_box">
+              <a href="#">
+                <img th:src="@{/images/fb.png}" alt="" />
+              </a>
+              <a href="#">
+                <img th:src="@{/images/twitter.png}" alt="" />
+              </a>
+              <a href="#">
+                <img th:src="@{/images/linkedin.png}" alt="" />
+              </a>
+              <a href="#">
+                <img th:src="@{/images/instagram.png}" alt="" />
+              </a>
+              <a href="#">
+                <img th:src="@{/images/youtube.png}" alt="" />
+              </a>
+            </div>
+          </div>
+
+          <div class="info_main">
+            <div class="row">
+              <div class="col-md-3 col-lg-2">
+                <div class="info_link-box">
+                  <h5>Useful Link</h5>
+                  <ul>
+                    <li class="active">
+                      <a class="" href="index.html"
+                        >Home <span class="sr-only">(current)</span></a
+                      >
+                    </li>
+                    <li class="">
+                      <a class="" href="about.html">About </a>
+                    </li>
+                    <li class="">
+                      <a class="" href="work.html">Work </a>
+                    </li>
+                    <li class="">
+                      <a class="" href="category.html">Category </a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+              <div class="col-md-3">
+                <h5>Offices</h5>
+                <p>
+                  Readable content of a page when looking at its layoutreadable
+                  content of a page when looking at its layout
+                </p>
+              </div>
+
+              <div class="col-md-3 col-lg-2 offset-lg-1">
+                <h5>Information</h5>
+                <p>
+                  Readable content of a page when looking at its layoutreadable
+                  content of a page when looking at its layout
+                </p>
+              </div>
+
+              <div class="col-md-3 offset-lg-1">
+                <div class="info_form">
+                  <h5>Newsletter</h5>
+                  <form action="">
+                    <input type="email" placeholder="Email" />
+                    <button>Subscribe</button>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-lg-9 col-md-10 mx-auto">
+              <div class="info_contact layout_padding2">
+                <div class="row">
+                  <div class="col-md-3">
+                    <a href="#" class="link-box">
+                      <div class="img-box">
+                        <img th:src="@{/images/location.png}" alt="" />
+                      </div>
+                      <div class="detail-box">
+                        <h6>Location</h6>
+                      </div>
+                    </a>
+                  </div>
+                  <div class="col-md-4">
+                    <a href="#" class="link-box">
+                      <div class="img-box">
+                        <img th:src="@{/images/mail.png}" alt="" />
+                      </div>
+                      <div class="detail-box">
+                        <h6>demo@gmail.com</h6>
+                      </div>
+                    </a>
+                  </div>
+                  <div class="col-md-5">
+                    <a href="#" class="link-box">
+                      <div class="img-box">
+                        <img th:src="@{/images/call.png}" alt="" />
+                      </div>
+                      <div class="detail-box">
+                        <h6>Call +01 1234567890</h6>
+                      </div>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- end info section -->
+
+    <!-- footer section -->
+    <footer class="container-fluid footer_section">
+      <div class="container">
+        <p>
+          &copy; <span id="displayDate"></span> All Rights Reserved By
+          <a href="https://html.design/">Free Html Templates</a>
+        </p>
+      </div>
+    </footer>
+    <!-- end  footer section -->
+
+    <script th:src="@{/js/jquery-3.4.1.min.js}"></script>
+    <script th:src="@{/js/bootstrap.js}"></script>
+    <script th:src="@{/js/custom.js}"></script>
+  </body>
 </html>
