@@ -19,6 +19,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 @Controller
@@ -38,12 +40,26 @@ public class ElectionListController {
 
     @GetMapping("/echoice/electionlist")
     public ModelAndView getVotingPage() {
-
         List<Election> elections = electionRepository.findAll();
+
+        LocalDate currentDate = LocalDate.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd"); // Adjust the pattern to match your date format
+
+        elections.forEach(election -> {
+            LocalDate endDate = LocalDate.parse(election.getEndDate(), formatter);
+            if (endDate.isAfter(currentDate.minusDays(15))) {
+                election.setStatus("new");
+            } else if (endDate.isBefore(currentDate)) {
+                election.setStatus("expired");
+            }
+        });
+
+        elections.sort((e1, e2) -> LocalDate.parse(e2.getEndDate(), formatter).compareTo(LocalDate.parse(e1.getEndDate(), formatter)));
+
         ModelAndView modelAndView = new ModelAndView("electionList");
         modelAndView.addObject("elections", elections);
-       // modelAndView.addObject("selectedElection", new Election());
         return modelAndView;
+
 
     }
     @PostMapping("/echoice/votingPage")

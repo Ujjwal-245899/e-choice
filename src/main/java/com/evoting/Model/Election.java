@@ -15,6 +15,8 @@ public class Election {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 
     private Long id;
+    @Transient
+    private String status;
 
     public Long getId() {
         return id;
@@ -66,4 +68,12 @@ public class Election {
 
     @OneToMany(mappedBy = "election", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Candidate> candidates = new ArrayList<>();
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
 }
