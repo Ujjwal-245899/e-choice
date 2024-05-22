@@ -34,6 +34,6 @@ public class LinksController {
     @GetMapping("/casting")
     public String showCastingPage()
     {
-        return "castingPage.html";
+        return "casting.html";
     }
 }
