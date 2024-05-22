@@ -8,7 +8,7 @@ public class FinalYearProjectApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(FinalYearProjectApplication.class, args);
-		System.out.println("--------------Startted---------------------");
+		System.out.println("--------------Startted-----------------------");
 	}
 
 }
