@@ -13,7 +13,7 @@
   <meta name="author" content="" />
 
   <title>e-Choice</title>
-
+  <link rel="icon" th:href="@{/images/logo.png}" type="image/x-icon">
   <!-- bootstrap core css -->
   <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.css}" />
 
@@ -23,6 +23,22 @@
   <!-- responsive style -->
   <link th:href="@{/css/responsive.css}" rel="stylesheet" />
 </head>
+
+<style>
+          .popup-message {
+            display: none;
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px;
+            position: fixed;
+            bottom: 10px;
+            right: 10px;
+            z-index: 1000;
+            border-radius: 5px;
+        }
+
+
+</style>
 
 <body>
   <div class="hero_area">
@@ -43,16 +59,16 @@
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav  ">
               <li class="nav-item active">
-                <a class="nav-link"  th:href="@{/index.html}">Home <span class="sr-only">(current)</span></a>
+                <a class="nav-link"  th:href="@{/index}">Home <span class="sr-only">(current)</span></a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" th:href="@{/about.html}"> About</a>
+                <a class="nav-link" th:href="@{/about}"> About</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" th:href="@{/work.html}">Work </a>
+                <a class="nav-link" th:href="@{/work}">Work </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" th:href="@{/category.html}"> Category </a>
+                <a class="nav-link" th:href="@{/category}"> Category </a>
               </li>
             </ul>
             <div class="user_option">
@@ -151,8 +167,8 @@
                       <a href="" class="btn-1">
                         About Us
                       </a>
-                      <a href="" class="btn-2">
-                        Get A Quote
+                      <a th:href="@{https://buy.stripe.com/test_4gwbMee1p1Ym2dO288}" class="btn-2">
+                      Become A Member
                       </a>
                     </div>
                   </div>
@@ -551,13 +567,13 @@
                     <a class="" th:href="@{/index}">Home <span class="sr-only">(current)</span></a>
                   </li>
                   <li class="">
-                    <a class="" href="about.html">About </a>
+                    <a class="" th:href="@{/about}">About </a>
                   </li>
                   <li class="">
-                    <a class="" href="work.html">Work </a>
+                    <a class="" th:href="@{/work}">Work </a>
                   </li>
                   <li class="">
-                    <a class="" href="category.html">Category </a>
+                    <a class="" th:href="@{/category}">Category </a>
                   </li>
                 </ul>
               </div>
