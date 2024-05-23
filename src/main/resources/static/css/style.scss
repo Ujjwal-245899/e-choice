@@ -5,13 +5,10 @@ $primary2: #1a2e35;
 $btnColor: #ff4f5a;
 
 @mixin main-font {
-  font-family: "Poppins", sans-serif;
+  font-family: 'Poppins', sans-serif;
+
 }
-body {
-  @include main-font;
-  color: #0c0c0c;
-  background-color: #ffffff;
-}
+
 @mixin second-font {
   font-family: "Poppins", sans-serif;
 }
@@ -85,6 +82,7 @@ body {
   display: flex;
   flex-direction: column;
   position: relative;
+
 }
 
 .sub_page {
@@ -243,7 +241,7 @@ a:focus {
   .row {
     align-items: center;
 
-    & > div {
+    &>div {
       position: unset;
     }
   }
@@ -341,6 +339,7 @@ a:focus {
     right: 25px;
 
     li {
+
       border-radius: 100%;
       text-indent: 0px;
       text-align: center;
@@ -588,6 +587,8 @@ a:focus {
 
 // end client_section
 
+
+
 /* info section */
 .info_section {
   position: relative;
@@ -624,6 +625,7 @@ a:focus {
         font-size: 32px;
       }
     }
+
 
     .social_box {
       display: flex;
@@ -680,6 +682,8 @@ a:focus {
         font-size: 15px;
       }
     }
+
+
   }
 
   .info_contact {
@@ -709,6 +713,8 @@ a:focus {
 }
 
 /* end info section */
+
+
 
 /* footer section*/
 
