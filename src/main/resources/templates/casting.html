@@ -576,6 +576,8 @@ a:focus {
             <div class="col-md-7">
                 <div class="detail-box">
                     <h3>CAST YOUR VOTE</h3>
+                    <h3> Welcome <span th:text ="${name}"/></h3>
+
                     <h2>Using e-Choice</h2>
                     <div>
                         <a href=""> Read More </a>
@@ -592,21 +594,21 @@ a:focus {
                     <div class="carousel-inner">
                         <div class="carousel-item active">
                             <div class="img-box">
-                                <img src="images/slider-img.png" alt="" />
+                                <img th:src="@{/images/slider-img.png}" alt="" />
                             </div>
                         </div>
                         <div class="carousel-item">
                             <div class="img-box">
-                                <img src="images/slider-img.png" alt="" />
+                                <img th:src="@{/images/slider-img.png}" alt="" />
                             </div>
                         </div>
                         <div class="carousel-item">
                             <div class="img-box">
-                                <img src="images/slider-img.png" alt="" />
+                                <img th:src="@{/images/slider-img.png}" alt="" />
                             </div>
                         </div>
                     </div>
-                    <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                    <a class="carousel-control-prev" th:href="@{#carouselExampleIndicators}" role="button" data-slide="prev">
                         <span class="sr-only">Previous</span>
                     </a>
                     <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">

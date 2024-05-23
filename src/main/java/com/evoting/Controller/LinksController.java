@@ -16,11 +16,7 @@ public class LinksController {
     {
         return "about.html";
     }
-    @GetMapping("/loginpage")
-    public String showloginPage()
-    {
-        return "login";
-    }
+
     @GetMapping("/work")
     public String showWrokPage()
     {
