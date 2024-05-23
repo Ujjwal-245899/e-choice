@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!-- Basic -->
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <!-- Mobile Metas -->
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <!-- Site Metas -->
+    <meta name="keywords" content="" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+
+    <title>e-Choice</title>
+
+    <!-- bootstrap core css -->
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
+
+    <link
+      href="https://fonts.googleapis.com/css?family=Poppins:400,700&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Custom styles for this template -->
+
+    <!-- responsive style -->
+    <link href="css/responsive.css" rel="stylesheet" />
+    <style>
+      /* Global Styles */
+      body {
+        font-family: "Poppins", sans-serif;
+        color: #333;
+        margin: 0;
+        padding: 0;
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 15px;
+      }
+
+      /* About Header Section Styles */
+      .about-header {
+        background: #1cbbb4;
+        padding: 60px 0;
+        text-align: center;
+      }
+
+      .about-header h1 {
+        color: #fff;
+        margin-bottom: 20px;
+      }
+
+      .about-header p {
+        color: #fff;
+      }
+
+      /* About Details Section Styles */
+      .about-details {
+        padding: 60px 0;
+        background: #252525;
+      }
+
+      .about-details .container {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+      }
+
+      .about-text {
+        flex: 1;
+        padding: 20px;
+        color: #fff;
+      }
+
+      .about-text h2 {
+        color: #fff;
+        margin-bottom: 15px;
+      }
+
+      .about-text p {
+        color: #fff;
+        line-height: 1.6;
+      }
+
+      .about-image {
+        flex: 1;
+        padding: 20px;
+      }
+
+      .about-image img {
+        max-width: 100%;
+        height: auto;
+      }
+
+      /* Team Section Styles */
+      .team-member {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        text-align: center;
+        margin-bottom: 20px;
+      }
+
+      /* CSS for displaying the section containing the image, "who we are", "where we are", and "contact us" in the same column */
+      .contact-section {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        text-align: center;
+        margin-bottom: 20px;
+      }
+      .team-section {
+        padding: 60px 0;
+        text-align: center;
+        background: #f4f4f4;
+      }
+
+      .team-section h2 {
+        margin-bottom: 40px;
+      }
+
+      .team-member {
+        margin-bottom: 30px;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+
+      .team-member img {
+        max-width: 100px;
+        height: auto;
+        margin-right: 20px;
+        border-radius: 50%;
+      }
+
+      .team-member h4 {
+        background: #f8b500;
+        color: #fff;
+        padding: 10px;
+        margin-top: -20px;
+      }
+
+      .team-member p {
+        margin-top: 10px;
+      }
+      /* CSS for styling the team member cards */
+      .team-member-card {
+        background-color: #fff;
+        border-radius: 8px;
+        box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+        padding: 20px;
+        margin-bottom: 20px;
+        text-align: center;
+        width: calc(25% - 20px); /* Adjust the width as needed */
+      }
+
+      .team-member-card img {
+        width: 100px; /* Adjust the width as needed */
+        height: 100px; /* Adjust the height as needed */
+        border-radius: 50%;
+        margin-bottom: 10px;
+      }
+
+      /* CSS for styling the container for team member cards */
+      .card-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+      }
+
+      /* CSS for overall layout adjustments */
+      .container {
+        width: 90%; /* Adjust the width as needed */
+        margin: 0 auto;
+      }
+      /* CSS for styling the team member cards */
+      .team-member-card {
+        background-color: #232525; /* Changed background color */
+        color: #fff; /* Changed text color to white */
+        border-radius: 8px;
+        box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+        padding: 20px;
+        margin-bottom: 20px;
+        text-align: center;
+        width: calc(25% - 20px); /* Adjust the width as needed */
+      }
+
+      .team-member-card img {
+        width: 100px; /* Adjust the width as needed */
+        height: 100px; /* Adjust the height as needed */
+        border-radius: 50%;
+        margin-bottom: 10px;
+      }
+
+      /* CSS for styling the container for team member cards */
+      .card-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+      }
+
+      /* CSS for overall layout adjustments */
+      .container {
+        width: 90%; /* Adjust the width as needed */
+        margin: 0 auto;
+      }
+
+      /* CSS for styling the team section background */
+      .team-section {
+        background-color: #1cbbb4; /* Changed background color */
+      }
+
+      /* Footer Styles */
+      .footer {
+        background: #333;
+        color: #fff;
+        padding: 60px 0;
+        text-align: center;
+      }
+
+      .footer h2 {
+        color: white;
+        margin-bottom: 15px;
+      }
+
+      .footer p,
+      .footer a {
+        color: #ddd;
+      }
+
+      .footer a:hover {
+        color: #fff;
+      }
+
+      .footer .full-img {
+        max-width: 100%;
+        height: auto;
+      }
+
+      .footer-bottom {
+        background: #222;
+        padding: 20px 0;
+      }
+
+      .footer-bottom p {
+        margin: 0;
+        font-size: 12px;
+        color: #bbb;
+      }
+      .footer {
+        background-color: #1cbbb4;
+        padding: 20px;
+      }
+
+      .footer-cards {
+        display: flex;
+        flex-direction: row;
+      }
+
+      .footer-card {
+        width: 100%;
+        margin: 20px;
+      }
+
+      .footer-card-item {
+        overflow: hidden;
+        background-color: #1cbbb4;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        width: 100%;
+      }
+
+      .footer-background img,
+      .footer-card-content img {
+        width: 100%;
+        height: auto;
+      }
+
+      .footer-card-content {
+        padding: 20px;
+      }
+
+      .footer-card-content h2 {
+        margin-bottom: 10px;
+      }
+
+      .footer-card-content p {
+        margin: 0;
+      }
+    </style>
+  </head>
+
+  <body class="sub_page">
+    <div class="hero_area">
+      <!-- header section strats -->
+      <header class="header_section">
+        <div class="container-fluid">
+          <nav class="navbar navbar-expand-lg custom_nav-container">
+            <a class="navbar-brand" href="index.html">
+              <img src="images\logo.png" alt="" />
+              <span> e-Choice </span>
+            </a>
+            <button
+              class="navbar-toggler"
+              type="button"
+              data-toggle="collapse"
+              data-target="#navbarSupportedContent"
+              aria-controls="navbarSupportedContent"
+              aria-expanded="false"
+              aria-label="Toggle navigation"
+            >
+              <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+              <ul class="navbar-nav">
+                <li class="nav-item">
+                  <a class="nav-link" href="index.html"
+                    >Home <span class="sr-only">(current)</span></a
+                  >
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="about.html"> About</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="work.html">Work </a>
+                </li>
+                <li class="nav-item active">
+                  <a class="nav-link" href="category.html"> Contact </a>
+                </li>
+              </ul>
+              <div class="user_option">
+                <a href="">
+                  <span> Login/Register </span>
+                </a>
+                <form
+                  class="form-inline my-2 my-lg-0 ml-0 ml-lg-4 mb-3 mb-lg-0"
+                >
+                  <button
+                    class="btn my-2 my-sm-0 nav_search-btn"
+                    type="submit"
+                  ></button>
+                </form>
+              </div>
+            </div>
+            <div>
+              <div class="custom_menu-btn">
+                <button>
+                  <span class="s-1"> </span>
+                  <span class="s-2"> </span>
+                  <span class="s-3"> </span>
+                </button>
+              </div>
+            </div>
+          </nav>
+        </div>
+      </header>
+      <!-- end header section -->
+    </div>
+    <main role="main">
+      <!-- TOP SECTION -->
+      <header class="about-header">
+        <div class="container padding-2x">
+          <h1
+            class="text-strong text-white text-center text-size-60 text-uppercase margin-bottom-20"
+          >
+            About Us
+          </h1>
+          <p class="text-size-20 text-white text-center text-uppercase">
+            "Welcome to e-Choice, the premier e-voting platform designed to make
+            your voting experience seamless and secure. Our user-friendly
+            interface ensures effortless participation, allowing you to cast
+            your vote with confidence from anywhere, at any time. With robust
+            security measures and transparent processes, we guarantee the
+            integrity and reliability of every vote. Join us at e-Choice, where
+            every voice counts and every decision shapes our collective future."
+          </p>
+        </div>
+      </header>
+
+      <!-- SECTION 1 -->
+      <section class="about-details">
+        <div class="container">
+          <div class="about-text padding-2x background-white">
+            <h2>What We Do</h2>
+            <p>
+              "Welcome to e-Choice, the premier e-voting platform designed to
+              make your voting experience seamless and secure. Our user-friendly
+              interface ensures effortless participation, allowing you to cast
+              your vote with confidence from anywhere, at any time. With robust
+              security measures and transparent processes, we guarantee the
+              integrity and reliability of every vote. Join us at e-Choice,
+              where every voice counts and every decision shapes our collective
+              future."
+            </p>
+            <h2>Who We Are</h2>
+            <p>
+              "Welcome to e-Choice, the premier e-voting platform designed to
+              make your voting experience seamless and secure. Our user-friendly
+              interface ensures effortless participation, allowing you to cast
+              your vote with confidence from anywhere, at any time. With robust
+              security measures and transparent processes, we guarantee the
+              integrity and reliability of every vote. Join us at e-Choice,
+              where every voice counts and every decision shapes our collective
+              future."
+            </p>
+          </div>
+          <div class="about-image">
+            <img src="images\slider-img.png" alt="About Image" />
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 3 -->
+      <section class="team-section">
+        <h2
+          class="s-12 text-thin text-size-30 text-uppercase margin-top-bottom-20 center text-center"
+        >
+          Our <b>Team</b>
+        </h2>
+        <div class="container">
+          <div class="card-container">
+            <!-- Team member card 1 -->
+            <div class="team-member-card">
+              <img src="images\experience-img.jpg" alt="Team Member 1" />
+              <h4 class="background-primary padding text-strong">
+                UJJWAL SINGH
+              </h4>
+              <p class="margin-bottom-10 text-primary text-uppercase">
+                Team Lead & Backend Developer
+              </p>
+            </div>
+            <!-- Team member card 2 -->
+            <div class="team-member-card">
+              <img src="images\experience-img.jpg" alt="Team Member 2" />
+              <h4 class="background-primary padding text-strong">
+                SWATI SINGH
+              </h4>
+              <p class="margin-bottom-10 text-primary text-uppercase">
+                UI/UX Designer & Frontend Developer
+              </p>
+            </div>
+            <!-- Team member card 3 -->
+            <div class="team-member-card">
+              <img src="images\experience-img.jpg" alt="Team Member 3" />
+              <h4 class="background-primary padding text-strong">
+                ANCHAL KUMARI
+              </h4>
+              <p class="margin-bottom-10 text-primary text-uppercase">
+                Frontend Developer
+              </p>
+            </div>
+            <!-- Team member card 4 -->
+            <div class="team-member-card">
+              <img src="images\experience-img.jpg" alt="Team Member 4" />
+              <h4 class="background-primary padding text-strong">
+                SOURAV DIWAKAR
+              </h4>
+              <p class="margin-bottom-10 text-primary text-uppercase">
+                Database Administrator
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- experience section -->
+
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-cards">
+          <div class="footer-card">
+            <div class="footer-card-item footer-background">
+              <!-- Background image goes here -->
+              <img src="images/experience-img.jpg" alt="Background Image" />
+            </div>
+          </div>
+          <div class="footer-card">
+            <div class="footer-card-item">
+              <div class="footer-card-content">
+                <h2 class="text-strong text-uppercase">Who We Are?</h2>
+                <p>
+                  "Welcome to e-Choice, the premier e-voting platform designed
+                  to make your voting experience seamless and secure. Our
+                  user-friendly interface ensures effortless participation,
+                  allowing you to cast your vote with confidence from anywhere,
+                  at any time. With robust security measures and transparent
+                  processes."
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="footer-card">
+            <div class="footer-card-item">
+              <div class="footer-card-content">
+                <h2 class="text-strong text-uppercase">Contact</h2>
+                <p>
+                  <a
+                    class="text-primary-hover"
+                    href="mailto:uks245899@gmail.com"
+                    >uks245899@gmail.com</a
+                  >
+                </p>
+                <p>
+                  <b class="text-primary margin-right-10"></b
+                  ><a
+                    class="text-primary-hover"
+                    href="mailto:swatisingh245899@gmail.com"
+                    >swatisingh245899@gmail.com</a
+                  >
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom text-center">
+        <p class="text-size-12">All Copyright @Ujjwal & Team.</p>
+      </div>
+    </footer>
+
+    <script src="js/jquery-3.4.1.min.js"></script>
+    <script src="js/bootstrap.js"></script>
+    <script src="js/custom.js"></script>
+  </body>
+</html>
