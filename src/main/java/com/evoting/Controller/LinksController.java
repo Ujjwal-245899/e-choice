@@ -11,8 +11,9 @@ public class LinksController {
     {
         return "index";
     }
+
     @GetMapping("/about")
-    public  String testPage()
+    public String tetsingpage()
     {
         return "about.html";
     }

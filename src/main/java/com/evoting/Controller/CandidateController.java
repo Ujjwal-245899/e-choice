@@ -33,6 +33,6 @@ public class CandidateController {
         System.out.println(candidate.getName()+"-->"+candidate.getVoteCount()+"-->"+candidate.isVoted());
 
         candidateRepository.save(candidate);
-        return "sucess";
+        return "redirect:/casting";
     }
 }

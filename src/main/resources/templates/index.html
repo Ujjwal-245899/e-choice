@@ -24,21 +24,6 @@
   <link th:href="@{/css/responsive.css}" rel="stylesheet" />
 </head>
 
-<style>
-          .popup-message {
-            display: none;
-            background-color: #4CAF50;
-            color: white;
-            padding: 10px;
-            position: fixed;
-            bottom: 10px;
-            right: 10px;
-            z-index: 1000;
-            border-radius: 5px;
-        }
-
-
-</style>
 
 <body>
 <div class="hero_area">
@@ -133,8 +118,8 @@
                     "Vote seamlessly and securely on our e-voting website, designed for <br> easy participation and reliable results, ensuring every voice is heard <br>and counted."
                   </p>
                   <div class="btn-box">
-                    <a href="" class="btn-1">
-                      About Us
+                    <a th:href="@{/register}" class="btn-1">
+                      Register
                     </a>
                     <a href="" class="btn-2">
                       Get A Quote
@@ -156,16 +141,15 @@
               <div class="col-md-5 offset-md-1">
                 <div class="detail-box">
                   <h1>
-                    You Can Choose <br>
                     Your Choice <br>
-                    Here
+                    Matters
                   </h1>
                   <p>
                     "Vote seamlessly and securely on our e-voting website, designed for <br> easy participation and reliable results, ensuring every voice is heard <br>and counted."
                   </p>
                   <div class="btn-box">
-                    <a href="" class="btn-1">
-                      About Us
+                    <a th:href="@{/loginpage}" class="btn-1">
+                      Login
                     </a>
                     <a th:href="@{https://buy.stripe.com/test_4gwbMee1p1Ym2dO288}" class="btn-2">
                       Become A Member
@@ -187,9 +171,9 @@
               <div class="col-md-5 offset-md-1">
                 <div class="detail-box">
                   <h1>
-                    You Can Choose <br>
-                    Your Choice <br>
-                    Here
+                    We <br>
+                    Value your  <br>
+                    Choice Here
                   </h1>
                   <p>
                     "Vote seamlessly and securely on our e-voting website, designed for <br> easy participation and reliable results, ensuring every voice is heard <br>and counted."
@@ -245,7 +229,7 @@
             <a href="" class="btn-1">
               Read More
             </a>
-            <a href="" class="btn-2">
+            <a th:href="@{/loginpage}" class="btn-2">
               Vote
             </a>
           </div>
@@ -274,7 +258,7 @@
         </div>
         <div class="detail-box">
           <h5>
-            Design & Arts
+            Secure
           </h5>
         </div>
       </div>
@@ -284,7 +268,7 @@
         </div>
         <div class="detail-box">
           <h5>
-            Web Development
+            Stastics
           </h5>
         </div>
       </div>
@@ -294,7 +278,7 @@
         </div>
         <div class="detail-box">
           <h5>
-            SEO Markting
+           Election Creation
           </h5>
         </div>
       </div>
@@ -314,7 +298,7 @@
         </div>
         <div class="detail-box">
           <h5>
-            Logo Design
+            Live Election
           </h5>
         </div>
       </div>
@@ -372,7 +356,7 @@
           <div class="detail-box">
             <div class="heading_container">
               <h2>
-                Work Freelaner Has Done
+                Some Facts About e-<bold>Choice</bold>
               </h2>
             </div>
             <div class="tab_container">
@@ -382,10 +366,10 @@
                 </div>
                 <div class="detail-box">
                   <h5>
-                    $250 Million
+                    Ballot Creation
                   </h5>
                   <h3>
-                    Paid to Freelancers
+                   On one Click
                   </h3>
                 </div>
               </div>
@@ -398,7 +382,7 @@
                     2 Million
                   </h5>
                   <h3>
-                    Paid Invoices
+                    Election Done
                   </h3>
                 </div>
               </div>
@@ -408,10 +392,10 @@
                 </div>
                 <div class="detail-box">
                   <h5>
-                    700,000
+                    20,000
                   </h5>
                   <h3>
-                    Worldwide Freelancer
+                    Worldwide Members
                   </h3>
                 </div>
               </div>
@@ -424,7 +408,7 @@
                     98%
                   </h5>
                   <h3>
-                    Customer <br>
+                   Voter <br>
                     Satisfaction Rate
                   </h3>
                 </div>
@@ -477,10 +461,10 @@
             <div class="carousel-item active">
               <div class="detail-box">
                 <h4>
-                  John Hissona
+                 From a Voter
                 </h4>
                 <p>
-                  passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If youThere are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in s
+                  I was initially skeptical about e-voting, but after using it in the last election, I'm a believer. The process was incredibly straightforward and convenient. I could cast my vote from the comfort of my home, avoiding long lines and the hassle of traveling to a polling station. The system was secure and transparent, giving me confidence that my vote was counted accurately. E-voting is a game-changer for modern democracy
                 </p>
                 <img th:src="@{/images/quote.png}" alt="">
               </div>
@@ -491,7 +475,7 @@
                   John Hissona
                 </h4>
                 <p>
-                  passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If youThere are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in s
+                  As an election official, I have seen firsthand the benefits of implementing e-voting systems. The accuracy and efficiency of vote counting have significantly improved, reducing the chances of human error. The real-time tracking and verification features have enhanced the transparency of the entire election process. Moreover, e-voting has made it easier to include people with disabilities, the elderly, and those living in remote areas, ensuring a more inclusive election.
                 </p>
                 <img th:src="@{/images/quote.png}" alt="">
               </div>
@@ -499,11 +483,10 @@
             <div class="carousel-item">
               <div class="detail-box">
                 <h4>
-                  John Hissona
+                  From the Senior Citizen
                 </h4>
                 <p>
-                  passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If youThere are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in s
-                </p>
+                  I've always valued my right to vote, but as I've gotten older, getting to the polling station has become more challenging. E-voting has been a blessing. I can now participate in elections without worrying about my mobility issues. The process was simple and user-friendly, and I feel more connected to my community and the political process. E-voting has allowed me to continue exercising my democratic rights comfortably.                </p>
                 <img th:src="@{/images/quote.png}" alt="">
               </div>
             </div>
