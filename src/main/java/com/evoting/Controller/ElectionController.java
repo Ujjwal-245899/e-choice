@@ -11,6 +11,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 //import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
@@ -29,6 +30,8 @@ public class ElectionController {
 
     @Autowired
     private ElectionService electionService;
+    @Autowired
+    private ElectionRepository electionRepository;
 
 
     @GetMapping("/adminpage")
@@ -67,6 +70,13 @@ public class ElectionController {
 
         // Return a response
         return "";
+    }
+
+    @GetMapping("/resultList")
+    public String getElections(Model model) {
+        List<Election> elections = electionRepository.findAll();
+        model.addAttribute("elections", elections);
+        return "electionresultlist";
     }
     }
 
