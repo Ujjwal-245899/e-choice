@@ -55,7 +55,7 @@ public class RegisterController {
 		if (otp.equals(map.get("otp"))) {
 			registrationService.SaveUser((UserDTO) map.get("UserDTO"));
 			System.out.println("User saved successfully!");
-			return "sucess"; // Return the name of the success view
+			return "redirect:/index"; // Return the name of the success view
 		} else {
 			System.out.println("Invalid OTP");
 			return "error"; // Return the name of the error view

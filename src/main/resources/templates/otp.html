@@ -1,85 +1,26 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>OTP Verification</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            margin: 0;
-            padding: 0;
-        }
-
-        .container {
-            max-width: 400px;
-            margin: 50px auto;
-            background-color: #fff;
-            padding: 20px;
-            border-radius: 5px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-
-        h2 {
-            text-align: center;
-            margin-bottom: 20px;
-        }
-
-        .form-group {
-            margin-bottom: 20px;
-        }
-
-        label {
-            display: block;
-            font-weight: bold;
-        }
-
-        input[type="text"] {
-            width: 100%;
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-        }
-
-        .btn {
-            display: block;
-            width: 100%;
-            padding: 10px;
-            background-color: #007bff;
-            color: #fff;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
-
-        .btn:hover {
-            background-color: #0056b3;
-        }
-
-        .error-message {
-            color: #ff0000;
-            margin-top: 10px;
-            text-align: center;
-        }
-
-    </style>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 </head>
-<body>
-<div class="container">
-    <h2>OTP Verification</h2>
-    <form th:action="@{/evoting/verify}" method="post" id="otpForm">
-        <div class="form-group">
-            <label for="otp">Enter OTP:</label>
-            <input type="text" id="otp" name="otp" class="form-control" th:required="required">
-        </div>
-        <button type="submit" class="btn">Verify OTP</button>
+<body class="bg-gray-100">
 
+<div class="max-w-md mx-auto mt-12 bg-white p-8 rounded-lg shadow-lg">
+    <h2 class="text-2xl font-semibold text-center mb-6">OTP Verification</h2>
+    <form th:action="@{/evoting/verify}" method="post" id="otpForm">
+        <div class="mb-4">
+            <label for="otp" class="block text-gray-700 font-bold mb-2">Enter OTP:</label>
+            <input type="text" id="otp" name="otp" class="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+        </div>
+        <button type="submit" class="w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+            <span class="material-icons align-middle">check_circle</span>
+            Verify OTP
+        </button>
     </form>
 </div>
-
-
 
 </body>
 </html>

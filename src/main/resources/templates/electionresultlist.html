@@ -15,7 +15,11 @@
   <div id="election-list" class="bg-white p-4 rounded shadow-md">
     <ul>
       <li th:each="election : ${elections}" class="flex items-center justify-between mb-4 p-4 border rounded">
-        <span class="text-lg" th:text="${election.name}">Election Name</span>
+        <div>
+          <span class="text-lg" th:text="${election.name}">Election Name</span>
+          <span th:if="${election.status == 'New'}" class="ml-2 text-green-500">(New)</span>
+          <span th:if="${election.status == 'Expired'}" class="ml-2 text-red-500">(Expired)</span>
+        </div>
         <a th:href="@{/election/{id}/results(id=${election.id})}" class="bg-blue-500 text-white py-2 px-4 rounded flex items-center">
           View Results <span class="material-icons ml-2">arrow_forward</span>
         </a>

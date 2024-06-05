@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>OTP Verification Result</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100">
+
+<div id="popupMessage" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
+  <div class="bg-white p-6 rounded-lg shadow-lg">
+    <h3 th:text="${isSuccess} ? 'Verification Successful!' : 'Verification Failed!'" class="text-lg font-semibold mb-4"></h3>
+    <p th:text="${message}"></p>
+    <a href="/" class="mt-4 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+      Close
+    </a>
+  </div>
+</div>
+
+</body>
+</html>

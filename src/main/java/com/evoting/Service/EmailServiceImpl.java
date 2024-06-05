@@ -92,7 +92,7 @@ public class EmailServiceImpl  implements EmailService{
 
         String onboardingMessage = "Welcome to the Onboarding of E-choice - The Seamless Voting Experience.\n\n" +
                 "We're thrilled to have you join us in shaping the future through your vote. Your participation is crucial in making our democracy vibrant and inclusive.\n\n" +
-                "Here is the Enrollment Provided: [" + enroll +"] Use this Enrollment number to cast your vote for the candidates in the upcoming election.\n\n" +
+                "Here is the Enrollment Provided: [ ---> " + enroll +" <---] Use this Enrollment number to cast your vote for the candidates in the upcoming election.\n\n" +
                 "But that's not all. With E-choice, you can expect:\n\n" +
                 "1. Secure and Transparent Voting: We employ state-of-the-art encryption and blockchain technology to ensure that your vote is secure and your privacy is protected.\n" +
                 "2. User-Friendly Interface: Our platform is designed to be intuitive and easy to use, making the voting process hassle-free for everyone.\n" +
