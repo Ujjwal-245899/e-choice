@@ -28,14 +28,12 @@
             </thead>
             <tbody class="bg-white divide-y divide-gray-200">
             <!-- Iterate over users object and populate the table -->
-            <tr th:each="user : ${users}" th:if="${!user.status}">
-
+            <tr th:each="user : ${users}" >
               <td class="px-6 py-4 whitespace-nowrap" th:text="${user.name}"></td>
               <td class="px-6 py-4 whitespace-nowrap" th:text="${user.email}"></td>
               <td class="px-6 py-4 whitespace-nowrap">
-                <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800" th:text="${user.status}"></span>
+                <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-800" th:text="${user.status}"></span>
               </td>
-
             </tr>
             </tbody>
           </table>

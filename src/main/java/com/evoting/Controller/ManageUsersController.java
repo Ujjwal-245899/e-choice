@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -83,9 +84,19 @@ public class ManageUsersController {
     public String showNotApprovedUsers(Model model)
     {
         List<User> users = userRepository.findAll();
-        model.addAttribute("users",users);
+        List<User> FalseUsers=new ArrayList<>();
+
+        for(User usrs:users)
+        {
+           if(usrs.getStatus().equals("false"))
+           {
+               FalseUsers.add(usrs);
+               System.out.println(usrs.getName());
+           }
+        }
+        model.addAttribute("users",FalseUsers);
 
 
-        return "notApprovedUsers.html";
+        return "notApprovedUsers";
     }
 }

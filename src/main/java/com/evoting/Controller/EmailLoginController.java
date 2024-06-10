@@ -26,11 +26,13 @@ public class EmailLoginController {
     @ResponseBody
     public ModelAndView verifyLoginPage(@RequestParam("email") String email, @RequestParam("password") String password) {
         User user = userRepositry.findByemail(email);
-
+        System.out.println(user.getName());
         if (user != null && user.getPassword().equals(password)) {
 
             ModelAndView mdl = new ModelAndView("casting.html");
             mdl.addObject("name",user.getName());
+            mdl.addObject("userId",user.getId());
+
             return mdl;
         } else {
             return new ModelAndView("error.html");

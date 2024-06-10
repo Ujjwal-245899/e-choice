@@ -572,6 +572,7 @@ a:focus {
                 <div class="detail-box">
 
                     <h3>CAST YOUR VOTE</h3>
+                    <h1 th:text="${name}"></h1>
                     <h2>Using e-Choice</h2>
                     <div>
                         <a th:href="@{/login}"> Cast Vote ! </a>
@@ -715,7 +716,8 @@ a:focus {
                     </div>
                     <div class="card-body">
                         <p class="card-text">Check If your Eligible for Voting</p>
-                        <a href="#" class="btn btn-primary">Track Your Application</a>
+                        <a th:href="@{/trackmyapplication/{userId}(userId=${userId})}" class="btn btn-primary">Track Your Application</a>
+
                     </div>
                 </div>
             </div>

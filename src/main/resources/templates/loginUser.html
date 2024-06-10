@@ -23,10 +23,68 @@
       transition: margin-left .5s;
       padding: 16px;
     }
+     /* Sidebar */
+        .sidebar {
+            height: 100%;
+            width: 250px;
+            position: fixed;
+            top: 0;
+            left: -250px;
+            background-color: #343a40;
+            padding-top: 4rem;
+            transition: left 0.5s ease-in-out;
+        }
+
+        .sidebar.active {
+            left: 0;
+        }
+
+        .sidebar ul li {
+            padding: 10px 15px;
+            transition: background-color 0.3s;
+        }
+
+        .sidebar ul li a {
+            color: #f8f9fa;
+            text-decoration: none;
+        }
+
+        .sidebar ul li a:hover {
+            background-color: #495057;
+        }
+  .sidebar.active ~ #content {
+            margin-left: 0;
+        }
+          /* Page Content */
+        #content {
+            margin-left: 250px;
+            padding: 20px;
+            transition: margin-left 0.5s ease-in-out;
+        }
+
   </style>
 </head>
 
 <body class="bg-gray-100 flex justify-center items-center min-h-screen">
+
+<div class="sidebar active">
+  <ul class="nav flex-column">
+    <li class="nav-item">
+      <a class="nav-link" href="/createElection">Create Election</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="/manageuserss">Manage Users</a>
+    </li>
+  </ul>
+</div>
+<div id="content">
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+      <button type="button" id="sidebarCollapse" class="btn btn-info">
+        <i class="fas fa-align-left"></i>
+      </button>
+    </div>
+  </nav>
 
 
 <div class="flex justify-center items-center min-h-screen w-full">
@@ -68,5 +126,6 @@
 </div>
 
 
+</div>
 </body>
 </html>
