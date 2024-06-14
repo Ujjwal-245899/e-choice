@@ -8,21 +8,32 @@
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
   <!-- Material UI Icons -->
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <style>
+    .election-card {
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .election-card:hover {
+      transform: scale(1.02);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    }
+  </style>
 </head>
-<body class="bg-gray-100">
-<div class="container mx-auto p-4">
-  <h1 class="text-2xl font-bold mb-4">Election List</h1>
-  <div id="election-list" class="bg-white p-4 rounded shadow-md">
-    <ul>
-      <li th:each="election : ${elections}" class="flex items-center justify-between mb-4 p-4 border rounded">
-        <div>
-          <span class="text-lg" th:text="${election.name}">Election Name</span>
-          <span th:if="${election.status == 'New'}" class="ml-2 text-green-500">(New)</span>
-          <span th:if="${election.status == 'Expired'}" class="ml-2 text-red-500">(Expired)</span>
+<body class="bg-gray-50 font-sans">
+<div class="container mx-auto py-8 px-4">
+  <h1 class="text-4xl font-extrabold text-center mb-8 text-gray-900">Election List</h1>
+  <div id="election-list" class="space-y-6">
+    <ul class="space-y-4">
+      <li th:each="election : ${elections}" class="bg-white p-6 rounded-lg shadow-md election-card">
+        <div class="flex items-center justify-between">
+          <div>
+            <span class="text-2xl font-semibold text-gray-800" th:text="${election.name}">Election Name</span>
+            <span th:if="${election.status == 'New'}" class="ml-2 text-sm text-green-600 font-medium">(New)</span>
+            <span th:if="${election.status == 'Expired'}" class="ml-2 text-sm text-red-600 font-medium">(Expired)</span>
+          </div>
+          <a th:href="@{/election/{id}/results(id=${election.id})}" class="bg-blue-500 hover:bg-blue-600 text-white py-2 px-6 rounded-lg flex items-center transition">
+            View Results <span class="material-icons ml-2">arrow_forward</span>
+          </a>
         </div>
-        <a th:href="@{/election/{id}/results(id=${election.id})}" class="bg-blue-500 text-white py-2 px-4 rounded flex items-center">
-          View Results <span class="material-icons ml-2">arrow_forward</span>
-        </a>
       </li>
     </ul>
   </div>

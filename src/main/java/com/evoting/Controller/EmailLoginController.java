@@ -37,5 +37,6 @@ public class EmailLoginController {
         } else {
             return new ModelAndView("error.html");
         }
+
     }
 }

@@ -47,6 +47,12 @@ public class ResultController {
                 return "election_not_found";
             }
         }
+            @GetMapping("/results")
+            public String shouwResult()
+            {
+                return "results.html";
+            }
+
     }
 
 

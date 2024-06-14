@@ -522,26 +522,19 @@ a:focus {
                         <a class="nav-link" th:href="@{/index}" style="color: black;">Home <span class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" th:href="@{/about}" style="color: black;">About</a>
+                        <a class="nav-link"  th:href="@{/login}" style="color: black;">Vote</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" th:href="@{/work}" style="color: black;">Work</a>
+                        <a class="nav-link" th:href="@{/resultList}" style="color: black;">Check Results</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" th:href="@{/category}" style="color: black;">Category</a>
+                        <form action="/logout" method="post" style="display: inline;">
+                            <button type="submit" class="nav-link" style="color: black;">Logout</button>
+                        </form>
                     </li>
                 </ul>
 
-                <div class="user_option">
-                    <a th:href="@{/register}">
-                <span>
-                  Register
-                </span>
-                    </a>
-                    <form class="form-inline my-2 my-lg-0 ml-0 ml-lg-4 mb-3 mb-lg-0">
-                        <button class="btn  my-2 my-sm-0 nav_search-btn" type="submit"></button>
-                    </form>
-                </div>
+
             </div>
             <div>
                 <div class="custom_menu-btn ">

@@ -25,62 +25,26 @@
             max-width: 800px;
             margin: 0 auto;
         }
-        .btn-vote {
-            background-color: #4CAF50;
-            color: white;
-            padding: 8px 16px;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            text-decoration: none;
-            transition: background-color 0.3s ease;
-            display: inline-block;
-        }
-        .btn-vote:hover {
-            background-color: #45a049;
-        }
-        .btn-vote[disabled] {
-            background-color: #ccc;
-            cursor: not-allowed;
-        }
-        .btn-vote-container {
-            display: flex;
-            justify-content: flex-end;
-        }
-        .candidate-image {
-            height: 4rem;
-            width: 4rem;
-            object-fit: cover;
-            border-radius: 50%;
-            transition: transform 0.3s ease;
-        }
-        .candidate-image:hover {
-            transform: scale(1.2);
-            z-index: 1;
-            position: relative;
-        }
-        .btn-vote-container .btn-vote {
-            margin-left: 0.5rem;
-        }
-        .bg-gray-lighter {
-            background-color: #f3f4f6;
-        }
-        .table-header th {
-            text-align: left;
-            padding: 0.75rem;
-            font-size: 0.75rem;
-            text-transform: uppercase;
-            color: #718096;
-            letter-spacing: 0.05em;
-            border-bottom-width: 2px;
-            border-bottom-color: #cbd5e0;
-        }
-        .table-row td {
-            padding: 1rem 0.75rem;
-        }
-        .table-row:hover {
-            background-color: rgba(59, 130, 246, 0.1);
-        }
+
+          .candidate-image {
+    height: 200px; /* Adjust height as necessary */
+    object-fit: cover;
+    transition: transform 0.3s ease-in-out;
+  }
+  .candidate-image:hover {
+    transform: scale(1.1); /* Enlarge image on hover */
+  }
+  .btn-vote {
+    background-color: #38a169; /* Green color for button */
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 0.25rem;
+    text-align: center;
+    transition: background-color 0.3s ease-in-out;
+  }
+  .btn-vote:hover {
+    background-color: #2f855a; /* Darker green on hover */
+  }
     </style>
 </head>
 <body class="bg-black">
@@ -103,22 +67,17 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav  ">
           <li class="nav-item active">
-            <a class="nav-link"  th:href="@{/index}">Home <span class="sr-only">(current)</span></a>
+            <a class="nav-link"  th:href="@{/casting}">Home <span class="sr-only">(current)</span></a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" th:href="@{/about}"> About</a>
+            <a class="nav-link" th:href="@{/resultList}"> Check Results</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" th:href="@{/work}">Work </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" th:href="@{/category}"> Category </a>
-          </li>
+
         </ul>
         <div class="user_option">
           <a th:href="@{/register}">
                 <span>
-                  Register
+                 Find Enrollment
                 </span>
           </a>
           <form class="form-inline my-2 my-lg-0 ml-0 ml-lg-4 mb-3 mb-lg-0">
@@ -150,36 +109,21 @@
 <div class="container mx-auto">
   <h1 class="text-3xl font-bold text-center mt-8 mb-4 text-white">Candidate List</h1>
 
-  <div class="bg-white rounded-lg overflow-hidden shadow-md">
-    <table class="w-full table-fixed">
-      <thead class="bg-gray-lighter">
-      <tr class="table-header">
-        <th class="w-1/12">ID</th>
-        <th class="w-3/12">Name</th>
-        <th class="w-3/12">Image</th>
-        <th class="w-5/12"></th>
-      </tr>
-      </thead>
-      <tbody>
-      <tr th:each="candidate : ${candidates}" class="table-row">
-        <td class="w-1/12 px-6 py-4"><span th:text="${candidate.id}"></span></td>
-        <td class="w-3/12 px-6 py-4"><span th:text="${candidate.name}"></span></td>
-        <td class="w-3/12 px-6 py-4">
-          <img th:src="@{'/candidateImage/' + ${candidate.id}}" alt="Candidate Image" class="candidate-image">
-        </td>
-        <td class="w-5/12 px-6 py-4">
-          <div class="btn-vote-container">
-            <form th:action="@{'/candidates/vote/' + ${candidate.id}}" method="post">
-              <button type="submit" class="btn-vote" th:text="'Vote'">Vote</button>
-            </form>
-            <!-- Add additional buttons or actions here -->
-          </div>
-        </td>
-      </tr>
-      </tbody>
-    </table>
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"> <!-- Increased gap between cards -->
+    <div th:each="candidate : ${candidates}" class="bg-white rounded-lg overflow-hidden shadow-md transform transition-all duration-300 hover:scale-105"> <!-- Add transform for scaling on hover -->
+      <div class="p-6">
+        <div class="overflow-hidden"> <!-- Ensure the image container is hidden to handle image overflow -->
+          <img th:src="@{'/candidateImage/' + ${candidate.id}}" alt="Candidate Image" class="candidate-image w-full h-48 object-cover mb-4 transform transition-transform duration-300 hover:scale-110"> <!-- Hover effect on image -->
+        </div>
+        <h2 class="text-xl font-bold mb-2" th:text="${candidate.name}"></h2>
+        <form th:action="@{'/candidates/vote/' + ${candidate.id}}" method="post">
+          <button type="submit" class="btn-vote bg-green-500 text-white px-4 py-2 rounded" th:text="'Vote'">Vote</button> <!-- Green button -->
+        </form>
+      </div>
+    </div>
   </div>
 </div>
+
 
 <!--Responsive J query and boot strtap-->
 <script th:src="@{/js/jquery-3.4.1.min.js}"></script>

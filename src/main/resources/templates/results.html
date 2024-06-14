@@ -3,75 +3,79 @@
 <head>
   <title>Election Results</title>
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" rel="stylesheet">
   <style>
-        .winner-animation {
-            animation: winnerAnimation 2s infinite;
-        }
+    .winner-animation {
+      animation: winnerAnimation 2s infinite;
+    }
 
-        @keyframes winnerAnimation {
-            0%, 100% { color: #4caf50; }
-            50% { color: #ffeb3b; }
-        }
+    @keyframes winnerAnimation {
+      0%, 100% { color: #4caf50; }
+      50% { color: #ffeb3b; }
+    }
 
-        .card {
-            transition: transform 0.5s;
-        }
+    .card {
+      transition: transform 0.5s, box-shadow 0.5s;
+    }
 
-        .card:hover {
-            transform: scale(1.05);
-        }
-    </style>
+    .card:hover {
+      transform: scale(1.05);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    .winner-highlight {
+      background: linear-gradient(90deg, rgba(255,215,0,0.3), rgba(255,255,255,0));
+      padding: 10px;
+      border-radius: 5px;
+    }
+  </style>
 </head>
-<body class="bg-gray-100">
-<div class="container mx-auto p-4">
-  <h1 class="text-4xl font-bold text-center mb-8">Election Results for <span th:text="${election.name}"></span></h1>
+<body class="bg-gray-900 text-gray-100 font-sans">
+<div class="container mx-auto p-6">
+  <h1 class="text-5xl font-extrabold text-center mb-12">Election Results for <span th:text="${election.name}"></span></h1>
 
-  <div class="bg-white p-6 rounded-lg shadow-lg">
-    <h2 class="text-2xl font-semibold mb-4">Candidates</h2>
-    <table class="min-w-full bg-white mb-8">
+  <div class="bg-gray-800 p-8 rounded-lg shadow-2xl">
+    <h2 class="text-3xl font-bold mb-8">Candidates</h2>
+    <table class="min-w-full bg-gray-800 mb-12">
       <thead>
       <tr>
-        <th class="py-2 px-4 border-b border-gray-200">Name</th>
-        <th class="py-2 px-4 border-b border-gray-200">Vote Count</th>
-        <th class="py-2 px-4 border-b border-gray-200">Percentage</th>
+        <th class="py-4 px-6 border-b-2 border-gray-600 text-left">Name</th>
+        <th class="py-4 px-6 border-b-2 border-gray-600 text-left">Vote Count</th>
+        <th class="py-4 px-6 border-b-2 border-gray-600 text-left">Percentage</th>
       </tr>
       </thead>
       <tbody>
-      <tr th:each="candidate : ${candidates}">
-        <td class="py-2 px-4 border-b border-gray-200" th:text="${candidate.name}"></td>
-        <td class="py-2 px-4 border-b border-gray-200" th:text="${candidate.voteCount}"></td>
-        <td class="py-2 px-4 border-b border-gray-200">
+      <tr th:each="candidate : ${candidates}" class="hover:bg-gray-700">
+        <td class="py-4 px-6 border-b border-gray-600" th:text="${candidate.name}"></td>
+        <td class="py-4 px-6 border-b border-gray-600" th:text="${candidate.voteCount}"></td>
+        <td class="py-4 px-6 border-b border-gray-600">
           <div class="relative pt-1">
-            <div class="overflow-hidden h-2 text-xs flex rounded bg-blue-200">
-              <div th:style="'width:' + ${votePercentages[candidate.name]} + '%'" class="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-blue-500"></div>
+            <div class="overflow-hidden h-2 text-xs flex rounded bg-blue-900">
+              <div th:style="'width:' + ${votePercentages[candidate.name]} + '%'" class="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-blue-600"></div>
             </div>
-            <span th:text="${#numbers.formatDecimal(votePercentages[candidate.name], 1, 2)} + '%'"></span>
+            <span class="mt-2 block" th:text="${#numbers.formatDecimal(votePercentages[candidate.name], 1, 2)} + '%'"></span>
           </div>
         </td>
       </tr>
       </tbody>
     </table>
 
-    <div class="card white darken-1">
+    <div class="card bg-gray-800 text-gray-100 p-6 rounded-lg shadow-xl">
       <div class="card-content">
-        <span class="card-title text-2xl font-semibold">Statistics</span>
-        <p class="text-lg">Total Votes: <span th:text="${totalVotes}"></span></p>
-        <p class="text-lg winner-animation">Winner: <span th:text="${winner != null ? winner.name : 'No winner determined'}"></span></p>
+        <span class="card-title text-3xl font-bold">Statistics</span>
+        <p class="text-xl mt-4">Total Votes: <span th:text="${totalVotes}"></span></p>
+        <p class="text-4xl mt-8 winner-animation winner-highlight font-extrabold">Winner: <span th:text="${winner != null ? winner.name : 'No winner determined'}"></span></p>
       </div>
-      <div class="card-action">
-        <a href="/elections" class="blue-text">Back to Elections</a>
+      <div class="card-action mt-6">
+        <a href="/elections" class="text-blue-500 underline">Back to Elections</a>
       </div>
     </div>
 
-    <div class="mt-8">
-      <h2 class="text-2xl font-semibold mb-4">Election Overview</h2>
-      <img src="https://via.placeholder.com/600x300" alt="Election Image" class="rounded-lg shadow-lg mb-4">
+    <div class="mt-12">
+      <h2 class="text-3xl font-bold mb-6">Election Overview</h2>
+      <img src="https://via.placeholder.com/600x300" alt="Election Image" class="rounded-lg shadow-xl mb-6">
       <p class="text-lg">Thank you for participating in the election. Stay tuned for more updates!</p>
     </div>
   </div>
 </div>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 </body>
 </html>

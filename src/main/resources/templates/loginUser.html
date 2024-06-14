@@ -67,16 +67,55 @@
 
 <body class="bg-gray-100 flex justify-center items-center min-h-screen">
 
-<div class="sidebar active">
+<div class="sidebar active bg-gray-800">
+  <div class="user-profile p-4 text-center text-white">
+    <img src="path/to/user-image.jpg" alt="User Image" class="rounded-full w-16 h-16 mx-auto mb-2">
+    <p class="font-bold">User Name</p>
+  </div>
   <ul class="nav flex-column">
     <li class="nav-item">
-      <a class="nav-link" href="/createElection">Create Election</a>
+      <a class="nav-link text-white" th:href="@{/index}">Home</a>
+    </li>
+
+    <li class="nav-item">
+      <a class="nav-link text-white" th:href="@{/resultList}">Check Results</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="/manageuserss">Manage Users</a>
+      <a class="nav-link text-white" th:href="@{/trackmyapplication/{userId}(userId=${userId})}">Track Your Application</a>
+    </li>
+    <li class="nav-item">
+      <form action="/logout" method="post" style="display: inline;">
+        <button type="submit" class="nav-link text-white bg-transparent border-0 p-0">Logout</button>
+      </form>
     </li>
   </ul>
 </div>
+
+<!-- Add this in your CSS -->
+<style>
+  .sidebar {
+    width: 250px; /* Adjust width as necessary */
+    background-color: #2d3748; /* Grey background */
+    height: 100vh; /* Full height */
+  }
+  .user-profile {
+    border-bottom: 1px solid #4a5568; /* Darker grey border */
+  }
+  .nav-link {
+    color: #ffffff; /* White text */
+    padding: 10px 15px;
+    display: block;
+  }
+  .nav-link:hover {
+    background-color: #4a5568; /* Darker grey on hover */
+    text-decoration: none;
+  }
+  .rounded-full {
+    border-radius: 50%;
+  }
+</style>
+
+<!--Login Body and Content -->
 <div id="content">
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container-fluid">
